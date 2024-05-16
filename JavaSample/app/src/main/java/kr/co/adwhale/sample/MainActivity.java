@@ -19,7 +19,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConstraintLayout root;
+    private RelativeLayout root;
     private Button btnTest;
     private RadioGroup rgBannerAdSize;
     private EditText etPlacementUid;
@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity {
         btnTest = findViewById(R.id.btnTest);
         rgBannerAdSize = findViewById(R.id.rgBannerAdSize);
         etPlacementUid = findViewById(R.id.etPlacementUid);
-        root = (ConstraintLayout) findViewById(R.id.root);
+        root = (RelativeLayout) findViewById(R.id.root);
         adWhaleMediationAdView = new AdWhaleMediationAdView(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
         root.addView(adWhaleMediationAdView, params);
 
