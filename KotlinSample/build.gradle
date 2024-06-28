@@ -9,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -32,10 +32,16 @@ allprojects {
             url "s3://repo.cauly.net/releases"
             credentials(AwsCredentials) {
                 accessKey "ADwhale Mediation SDK 가이드 내 키값 참조"
-                password = 'ADwhale Mediation SDK 가이드 내 키값 참조'
+                secretKey "ADwhale Mediation SDK 가이드 내 키값 참조"
             }
         }
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+        maven { url "https://bidmad-sdk.s3.amazonaws.com/" } //Bidmad
+        maven { url 'https://android-sdk.is.com/' } // IronSource(Bidmad)
+        maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea" } //Mintegral(Bidmad)
+        maven { url 'https://artifact.bytedance.com/repository/pangle/' } //Pangle(Bidmad)
+        maven { url 'https://repo.pubmatic.com/artifactory/public-repos' } //PubMatic(Bidmad)
+        maven { url "https://sdk.tapjoy.com/" } //Tapjoy(Bidmad)
     }
 }
 

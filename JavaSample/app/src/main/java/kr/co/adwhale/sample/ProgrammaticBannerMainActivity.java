@@ -17,7 +17,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 
-public class MainActivity extends AppCompatActivity {
+public class ProgrammaticBannerMainActivity extends AppCompatActivity {
 
     private RelativeLayout root;
     private Button btnTest;
@@ -30,11 +30,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_programmatic_banner_main);
         btnTest = findViewById(R.id.btnTest);
         rgBannerAdSize = findViewById(R.id.rgBannerAdSize);
         etPlacementUid = findViewById(R.id.etPlacementUid);
         root = (RelativeLayout) findViewById(R.id.root);
+
+        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
+            @Override
+            public void onInitComplete(int statusCode, String message) {
+                Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), "[QA] statusCode:" + statusCode + ", message:" + message);
+            }
+        });
+
         adWhaleMediationAdView = new AdWhaleMediationAdView(this);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -44,19 +52,17 @@ public class MainActivity extends AppCompatActivity {
         adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
             @Override
             public void onAdLoaded() {
-                Log.i(MainActivity.class.getSimpleName()+"hh", "onAdLoaded()");
+                Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), "[QA] onAdLoaded()");
             }
 
             @Override
             public void onAdLoadFailed(int statusCode, String message) {
-                Log.i(MainActivity.class.getSimpleName()+"hh", "statusCode:" + statusCode + ", message:" + message);
+                Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), "[QA] onAdLoadFailed(statusCode:" + statusCode + ", message:" + message + ")");
             }
-        });
 
-        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
             @Override
-            public void onInitComplete(int statusCode, String message) {
-                Log.i(MainActivity.class.getSimpleName()+"hh", "statusCode:" + statusCode + ", message:" + message);
+            public void onAdClicked() {
+                Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), "[QA] onAdClicked()");
             }
         });
 

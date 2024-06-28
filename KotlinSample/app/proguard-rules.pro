@@ -54,6 +54,15 @@
 -keep class net.adwhale.sdk.impl.mediation.ResMediationAdConfig {*;}
 -keep class net.adwhale.sdk.impl.mediation.ResMediation {*;}
 
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd {
+    public <init>(...);
+    public *** loadAd();
+    public *** showAd();
+    public *** setAdWhaleMediationInterstitialAdListener(***);
+}
+
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener {*;}
+
 -keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView {
     public <init>(...);
     public *** loadAd();

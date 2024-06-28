@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".SampleMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ProgrammaticInterstitialMainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".XmlBannerMainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ProgrammaticBannerMainActivity"
+            android:exported="true">
+        </activity>
 
         <meta-data
             android:name="net.adwhale.sdk.mediation.PUBLISHER_UID"
             android:value="ADwhale Mediation SDK 가이드 내 키값 참조" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="Google AdMob 에서 발급한 키값" />
     </application>
 
 </manifest>
