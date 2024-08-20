@@ -34,8 +34,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    // ADwhale Mediation SDK Repository
-    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.2'
+    // 기본 디펜던시: ADwhale Mediation SDK Repository
+    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.3'
+
+    // 옵션 디펜던시(제외가능): Cauly Adapter SDK Repository
+    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.31'
+
+    // 옵션 디펜던시(제외가능): AdFit Adapter SDK Repository
+    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.16.0'
+
+    // 옵션 디펜던시(제외가능): Techlabs Adapter SDK Repository
+    implementation 'net.adwhale.sdk.techlabs.adapter:techlabs-sdk:3.15.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

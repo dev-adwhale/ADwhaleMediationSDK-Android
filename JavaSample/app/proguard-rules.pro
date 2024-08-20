@@ -55,12 +55,41 @@
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener {*;}
 
--keepclasseswithmembers class net.adwhale.sdk.utils.LogUtils {
-    public static *** d(***);
-    public static *** i(***);
-    public static *** w(***);
-    public static *** e(java.lang.String);
-    public static *** e(java.lang.String, java.lang.Exception);
-    public static *** e(java.lang.String, java.lang.Throwable);
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerView {
+    public <init>(...);
+    public *** loadAd();
+    public *** show();
+    public *** destroy();
+    public *** setAdWhaleMediationAdBannerViewListener(***);
+    public *** resume();
+    public *** pause();
 }
+
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerViewListener {*;}
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 끝 ==================
+
+#================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 시작 ==================
+
+-keep class net.adwhale.sdk.cauly.adapter.CaulyAdBannerLoader {*;}
+
+-keep class net.adwhale.sdk.cauly.adapter.CaulyAdBannerPreLoader {*;}
+
+-keep class net.adwhale.sdk.cauly.adapter.CaulyAdInterstitialLoader {*;}
+
+#================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 끝 ==================
+
+#================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 시작 ==================
+
+-keep class net.adwhale.sdk.adfit.adapter.AdFitAdBannerLoader {*;}
+
+-keep class net.adwhale.sdk.adfit.adapter.AdFitAdBannerPreLoader {*;}
+
+#================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 끝 ==================
+
+#================== AdWhale Techlabs Adapter SDK Proguard for Release 적용 코드 시작 ==================
+
+-keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdBannerLoader {*;}
+
+-keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdInterstitialLoader {*;}
+
+#================== AdWhale Techlabs Adapter SDK Proguard for Release 적용 코드 끝 ==================
