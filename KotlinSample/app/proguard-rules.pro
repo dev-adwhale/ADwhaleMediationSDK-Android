@@ -90,6 +90,8 @@
 
 -keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdBannerLoader {*;}
 
+-keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdBannerPreLoader {*;}
+
 -keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdInterstitialLoader {*;}
 
 #================== AdWhale Techlabs Adapter SDK Proguard for Release 적용 코드 끝 ==================
