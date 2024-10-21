@@ -35,7 +35,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // 기본 디펜던시: ADwhale Mediation SDK Repository
-    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.4'
+    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.5'
 
     // 옵션 디펜던시(제외가능): Cauly Adapter SDK Repository
     implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.32'
