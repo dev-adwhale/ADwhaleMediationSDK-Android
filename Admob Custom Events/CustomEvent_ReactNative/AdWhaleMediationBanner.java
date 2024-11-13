@@ -1,10 +1,8 @@
 package com.example.rnadmob;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.google.android.gms.ads.AdError;
@@ -25,12 +22,10 @@ import com.google.android.gms.ads.mediation.MediationBannerAdConfiguration;
 import com.google.android.gms.ads.mediation.MediationConfiguration;
 
 import net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerView;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
-
-import java.lang.ref.WeakReference;
 
 public class AdWhaleMediationBanner implements MediationBannerAd {
     final static String TAG = AdWhaleMediationBanner.class.getSimpleName();
@@ -38,7 +33,7 @@ public class AdWhaleMediationBanner implements MediationBannerAd {
     private final MediationAdLoadCallback<MediationBannerAd, MediationBannerAdCallback> mediationAdLoadCallback;
     private MediationBannerAdCallback bannerAdCallback;
 
-    private AdWhaleMediationAdView adWhaleMediationAdView = null;
+    private AdWhaleMediationAdBannerView adWhaleMediationAdView = null;
 
     /** Error raised when the custom event adapter cannot obtain the ad unit id. */
     public static final int ERROR_NO_AD_UNIT_ID = 101;
@@ -49,6 +44,8 @@ public class AdWhaleMediationBanner implements MediationBannerAd {
 
     private Activity currentActivity;
 
+    private boolean load = false;
+
     public AdWhaleMediationBanner(MediationBannerAdConfiguration mediationBannerAdConfiguration, MediationAdLoadCallback<MediationBannerAd, MediationBannerAdCallback> mediationAdLoadCallback) {
         this.mediationBannerAdConfiguration = mediationBannerAdConfiguration;
         this.mediationAdLoadCallback = mediationAdLoadCallback;
@@ -56,6 +53,9 @@ public class AdWhaleMediationBanner implements MediationBannerAd {
 
     /** Loads a banner ad from the third party ad network. */
     public void loadAd() {
+        Log.d(TAG, "loadAd()");
+        load = true;
+
         /** 미디에이션 서버로부터 파라미터 설정 값 획득 **/
         String serverParameter = mediationBannerAdConfiguration.getServerParameters().getString(MediationConfiguration.CUSTOM_EVENT_SERVER_PARAMETER_FIELD);
         if (TextUtils.isEmpty(serverParameter)) {
@@ -111,37 +111,6 @@ public class AdWhaleMediationBanner implements MediationBannerAd {
         }
         /** Admob ad_size를 Adwhale ad_size로 변환 **/
 
-        // 배너 뷰 생성
-        adWhaleMediationAdView = new AdWhaleMediationAdView(currentActivity);
-        adWhaleMediationAdView.setPlacementUid(serverParameter);
-        adWhaleMediationAdView.setAdwhaleAdSize(adwhale_ad_size);
-
-        // 배너 뷰 콜백 리스너 등록
-        adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
-            @Override
-            public void onAdLoaded() {
-                Log.i(TAG, "onAdLoaded()");
-
-                if (adWhaleMediationAdView != null) {
-                    bannerAdCallback = mediationAdLoadCallback.onSuccess(AdWhaleMediationBanner.this);
-                    bannerAdCallback.onAdOpened();
-                    bannerAdCallback.reportAdImpression();
-                }
-            }
-
-            @Override
-            public void onAdLoadFailed(int statusCode, String message) {
-                Log.i(TAG, "onAdLoadFailed(" + statusCode + ", " + message + ")");
-                mediationAdLoadCallback.onFailure(new AdError(statusCode, message, SAMPLE_SDK_DOMAIN));
-            }
-
-            @Override
-            public void onAdClicked() {
-                Log.i(TAG, "onAdClicked()");
-                bannerAdCallback.reportAdClicked();
-            }
-        });
-
         // Adwhale SDK 초기화 코드
         AdWhaleMediationAds.init(currentActivity, new AdWhaleMediationOnInitCompleteListener() {
             @Override
@@ -149,6 +118,69 @@ public class AdWhaleMediationBanner implements MediationBannerAd {
                 Log.i(TAG, ".onInitComplete(" + statusCode + ", " + message + ")");
             }
         });
+
+        // 배너 뷰 생성
+        adWhaleMediationAdView = new AdWhaleMediationAdBannerView(currentActivity);
+        adWhaleMediationAdView.setPlacementUid(serverParameter);
+        adWhaleMediationAdView.setAdwhaleAdSize(adwhale_ad_size);
+
+        // 배너 뷰 콜백 리스너 등록
+        adWhaleMediationAdView.setAdWhaleMediationAdBannerViewListener(new AdWhaleMediationAdBannerViewListener() {
+            @Override
+            public void onAdLoaded() {
+                Log.i(TAG, ".onAdLoaded()");
+                if(adWhaleMediationAdView != null) {
+                    if (adWhaleMediationAdView.getDisplay() == null && !load) {
+                        adWhaleMediationAdView.destroy();
+                        adWhaleMediationAdView = null;
+                        return;
+                    }
+
+                    Handler mainHandler = new Handler(Looper.getMainLooper());
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            // 광고 표시는 반드시 Main UI Thread에서 진행
+                            adWhaleMediationAdView.show();
+
+                            bannerAdCallback = mediationAdLoadCallback.onSuccess(AdWhaleMediationBanner.this);
+                            bannerAdCallback.onAdOpened();
+                            bannerAdCallback.reportAdImpression();
+
+                            load = false;
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onAdLoadFailed(int statusCode, String message) {
+                Log.e(TAG, ".onAdLoadFailed(" + statusCode + ", " + message + ")");
+                mediationAdLoadCallback.onFailure(new AdError(statusCode, message, SAMPLE_SDK_DOMAIN));
+            }
+
+            @Override
+            public void onShowLandingScreen() {
+                Log.i(TAG, ".onShowLandingScreen()");
+            }
+
+            @Override
+            public void onCloseLandingScreen() {
+                Log.i(TAG, ".onCloseLandingScreen()");
+            }
+
+            @Override
+            public void onTimeout(String errorMessage) {
+                Log.i(TAG, ".onTimeout()");
+            }
+
+            @Override
+            public void onClickAd() {
+                Log.i(TAG, ".onClickAd()");
+                bannerAdCallback.reportAdClicked();
+            }
+        });
+
 
         Handler mainHandler = new Handler(Looper.getMainLooper());
         mainHandler.post(new Runnable() {
