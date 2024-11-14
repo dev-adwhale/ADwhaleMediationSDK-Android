@@ -38,7 +38,7 @@ public class AdWhaleMediationAdapter extends Adapter {
     @NonNull
     @Override
     public VersionInfo getSDKVersionInfo() {
-        String versionString = "1.0.2";
+        String versionString = "1.0.5";
         String[] splits = versionString.split("\\.");
 
         if (splits.length >= 3) {
@@ -55,7 +55,7 @@ public class AdWhaleMediationAdapter extends Adapter {
     @NonNull
     @Override
     public VersionInfo getVersionInfo() {
-        String versionString = "1.0.2.0";
+        String versionString = "1.0.5.0";
         String[] splits = versionString.split("\\.");
 
         if (splits.length >= 4) {
