@@ -42,6 +42,18 @@
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener {*;}
 
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd {
+    public <init>(...);
+    public *** loadAd(***);
+    public *** showAd(***);
+    public *** setAdWhaleMediationFullScreenContentCallback(***);
+}
+
+-keep class net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardItem {*;}
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback {*;}
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback {*;}
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationUserEarnedRewardListener {*;}
+
 -keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView {
     public <init>(...);
     public *** loadAd();
@@ -77,6 +89,18 @@
 -keep class net.adwhale.sdk.cauly.adapter.CaulyAdInterstitialLoader {*;}
 
 #================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 끝 ==================
+
+#================== AdWhale Admize Adapter SDK Proguard for Release 적용 코드 시작 ==================
+
+-keep class net.adwhale.sdk.admize.adapter.AdmizeAdBannerLoader {*;}
+
+-keep class net.adwhale.sdk.admize.adapter.AdmizeAdBannerPreLoader {*;}
+
+-keep class net.adwhale.sdk.admize.adapter.AdmizeAdInterstitialLoader {*;}
+
+-keep class net.adwhale.sdk.admize.adapter.AdmizeAdRewardLoader {*;}
+
+#================== AdWhale Admize Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
 #================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 시작 ==================
 

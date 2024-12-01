@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'kr.co.adwhale.sample'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "kr.co.adwhale.sample"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -22,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -35,16 +40,19 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // 기본 디펜던시: ADwhale Mediation SDK Repository
-    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.5'
+    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:1.0.6'
 
     // 옵션 디펜던시(제외가능): Cauly Adapter SDK Repository
-    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.32'
+    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.33'
+
+    // 옵션 디펜던시(제외가능): Admize Adapter SDK Repository
+    implementation 'net.adwhale.sdk.admize.adapter:admize-sdk:1.0.1'
 
     // 옵션 디펜던시(제외가능): AdFit Adapter SDK Repository
-    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.16.0'
+    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.17.2'
 
     // 옵션 디펜던시(제외가능): Techlabs Adapter SDK Repository
-    implementation 'net.adwhale.sdk.techlabs.adapter:techlabs-sdk:3.15.0'
+    implementation 'net.adwhale.sdk.techlabs.adapter:techlabs-sdk:3.18.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".interstitial.ProgrammaticInterstitialMainActivity">
+    tools:context=".reward.ProgrammaticRewardAdMainActivity">
 
     <TextView
         android:id="@+id/tvPlacementUid"
@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
-        android:text="1. 테스트 전면광고 Placement Uid 입력:"
+        android:text="1. 테스트 보상형광고 Placement Uid 입력:"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="테스트 전면광고 요청"
+        android:text="테스트 보상형광고 요청"
         app:layout_constraintTop_toBottomOf="@+id/etPlacementUid"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="테스트 전면광고 표시"
+        android:text="테스트 보상형광고 표시"
         app:layout_constraintTop_toBottomOf="@+id/btnTest"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

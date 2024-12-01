@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".reward.ProgrammaticRewardAdMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProgrammaticPreloadBannerMainActivity"
             android:exported="true" />
         <activity
@@ -31,14 +34,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProgrammaticInterstitialMainActivity"
-            android:exported="true"></activity>
+            android:name=".interstitial.ProgrammaticInterstitialMainActivity"
+            android:exported="true" />
         <activity
-            android:name=".XmlBannerMainActivity"
-            android:exported="true"></activity>
+            android:name=".banner.XmlBannerMainActivity"
+            android:exported="true" />
         <activity
-            android:name=".ProgrammaticBannerMainActivity"
-            android:exported="true"></activity>
+            android:name=".banner.ProgrammaticBannerMainActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="net.adwhale.sdk.mediation.PUBLISHER_UID"

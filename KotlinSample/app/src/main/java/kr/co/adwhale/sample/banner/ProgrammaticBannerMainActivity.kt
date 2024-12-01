@@ -1,4 +1,4 @@
-package kr.co.adwhale.sample
+package kr.co.adwhale.sample.banner
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
+import kr.co.adwhale.sample.R
 import net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener

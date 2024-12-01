@@ -36,5 +36,15 @@
       <option name="name" value="GitHubPackages" />
       <option name="url" value="https://maven.pkg.github.com/dev-adwhale/AdWhaleAndroid/SDK" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="https://bidmad-sdk.s3.amazonaws.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="GitHubPackages2" />
+      <option name="name" value="GitHubPackages2" />
+      <option name="url" value="https://maven.pkg.github.com/cauly/admize-sdk-android/SDK" />
+    </remote-repository>
   </component>
 </project>

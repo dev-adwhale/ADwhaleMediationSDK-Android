@@ -1,9 +1,10 @@
-package kr.co.adwhale.sample;
+package kr.co.adwhale.sample.interstitial;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +13,13 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 
+import kr.co.adwhale.sample.R;
+
 public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
 
     private Button btnTest;
+
+    private Button btnShow;
 
     private EditText etPlacementUid;
 
@@ -25,6 +30,7 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programmatic_interstitial_main);
         btnTest = findViewById(R.id.btnTest);
+        btnShow = findViewById(R.id.btnShow);
         etPlacementUid = findViewById(R.id.etPlacementUid);
 
         AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
@@ -39,31 +45,39 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdLoaded()");
-                adWhaleMediationInterstitialAd.showAd();
+                Toast.makeText(getApplicationContext(), ".onAdLoaded()", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdLoadFailed(int statusCode, String message) {
                 Log.e(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdLoadFailed(" + statusCode + ", " + message + ")");
+                Toast.makeText(getApplicationContext(), ".onAdLoadFailed(statusCode:" + statusCode + ", message:" + message + ")", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdShowed() {
                 Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdShowed()");
+                Toast.makeText(getApplicationContext(), ".onAdShowed()", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdShowFailed(int statusCode, String message) {
-                Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdShowFailed(" + statusCode + ", " + message + ")");
+                Log.e(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdShowFailed(" + statusCode + ", " + message + ")");
+                Toast.makeText(getApplicationContext(), ".onAdShowFailed(statusCode:" + statusCode + ", message:" + message + ")", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClosed() {
                 Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdClosed()");
+                Toast.makeText(getApplicationContext(), ".onAdClosed()", Toast.LENGTH_SHORT).show();
             }
         });
         btnTest.setOnClickListener(view -> {
             adWhaleMediationInterstitialAd.loadAd();
+        });
+
+        btnShow.setOnClickListener(view -> {
+            adWhaleMediationInterstitialAd.showAd();
         });
     }
 }
