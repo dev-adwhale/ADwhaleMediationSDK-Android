@@ -3,22 +3,23 @@ package kr.co.adwhale.sample.banner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
 import kr.co.adwhale.sample.R
+import kr.co.adwhale.sample.databinding.ActivityProgrammaticBannerMainBinding
 import net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener
 
 class ProgrammaticBannerMainActivity : AppCompatActivity() {
+    private var mBinding: ActivityProgrammaticBannerMainBinding? = null
+    private val binding get() = mBinding!!
 
-    private lateinit var root : RelativeLayout
+    private lateinit var bannerRoot : RelativeLayout
     private lateinit var btnTest : Button
     private lateinit var rgBannerAdSize : RadioGroup
     private lateinit var etPlacementUid : EditText
@@ -27,21 +28,26 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programmatic_banner_main)
-        btnTest = findViewById(R.id.btnTest)
-        rgBannerAdSize = findViewById(R.id.rgBannerAdSize)
-        etPlacementUid = findViewById(R.id.etPlacementUid)
-        root = findViewById(R.id.root)
+        mBinding = ActivityProgrammaticBannerMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        AdWhaleMediationAds.init(this, AdWhaleMediationOnInitCompleteListener { statusCode, message ->
-            Log.i(ProgrammaticBannerMainActivity::class.simpleName, "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)");
-        })
+        btnTest = binding.btnTest
+        rgBannerAdSize = binding.rgBannerAdSize
+        etPlacementUid = binding.etPlacementUid
+        bannerRoot = binding.bannerRoot
+
+        AdWhaleMediationAds.init(this) { statusCode, message ->
+            Log.i(
+                ProgrammaticBannerMainActivity::class.simpleName,
+                "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"
+            )
+        }
 
         adWhaleMediationAdView = AdWhaleMediationAdView(this)
         val params = RelativeLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         params.addRule(RelativeLayout.CENTER_HORIZONTAL)
-        root.addView(adWhaleMediationAdView, params)
+        bannerRoot.addView(adWhaleMediationAdView, params)
 
         adWhaleMediationAdView.adWhaleMediationAdViewListener =
             object : AdWhaleMediationAdViewListener {
@@ -59,26 +65,26 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
                 }
             }
 
-        rgBannerAdSize.setOnCheckedChangeListener { radioGroup, checkedId ->
+        rgBannerAdSize.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rdBanner320x50 -> {
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x50
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조")
+                    etPlacementUid.setText(getString(R.string.banner32050_placementUid))
                 }
 
                 R.id.rdBanner320x100 -> {
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x100
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조")
+                    etPlacementUid.setText(getString(R.string.banner320100_placementUid))
                 }
 
                 R.id.rdBanner300x250 -> {
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER300x250
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조")
+                    etPlacementUid.setText(getString(R.string.banner300250_placementUid))
                 }
 
                 R.id.rdBanner250x250 -> {
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER250x250
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조")
+                    etPlacementUid.setText(getString(R.string.banner250250_placementUid))
                 }
 
                 else -> {
@@ -87,25 +93,26 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
             }
         }
 
-        btnTest.setOnClickListener(View.OnClickListener { view : View? ->
+        btnTest.setOnClickListener {
             adWhaleMediationAdView.placementUid = etPlacementUid.text.toString()
             adWhaleMediationAdView.adwhaleAdSize = selectedAdWhaleAdSize
             adWhaleMediationAdView.loadAd()
-        })
+        }
     }
 
     override fun onResume() {
-        super.onResume()
         adWhaleMediationAdView.resume()
+        super.onResume()
     }
 
     override fun onPause() {
-        super.onPause()
         adWhaleMediationAdView.pause()
+        super.onPause()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         adWhaleMediationAdView.destroy()
+        mBinding = null
+        super.onDestroy()
     }
 }

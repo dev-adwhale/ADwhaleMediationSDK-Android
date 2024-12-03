@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        app:placementUid="ADwhale Mediation SDK 가이드 내 키값 참조"
+        app:placementUid="@string/banner32050_placementUid"
         app:bannerSize="BANNER320x50"
         android:layout_alignParentBottom="true"/>
 

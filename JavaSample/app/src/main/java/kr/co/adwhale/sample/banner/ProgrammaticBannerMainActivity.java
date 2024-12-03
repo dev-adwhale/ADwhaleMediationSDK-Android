@@ -2,6 +2,7 @@ package kr.co.adwhale.sample.banner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -21,7 +22,7 @@ import kr.co.adwhale.sample.R;
 
 public class ProgrammaticBannerMainActivity extends AppCompatActivity {
 
-    private RelativeLayout root;
+    private RelativeLayout bannerRoot;
     private Button btnTest;
     private RadioGroup rgBannerAdSize;
     private EditText etPlacementUid;
@@ -29,6 +30,7 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
 
     private AdWhaleMediationAdView adWhaleMediationAdView;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
         btnTest = findViewById(R.id.btnTest);
         rgBannerAdSize = findViewById(R.id.rgBannerAdSize);
         etPlacementUid = findViewById(R.id.etPlacementUid);
-        root = (RelativeLayout) findViewById(R.id.root);
+        bannerRoot = (RelativeLayout) findViewById(R.id.bannerRoot);
 
         AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
             @Override
@@ -50,7 +52,7 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        root.addView(adWhaleMediationAdView, params);
+        bannerRoot.addView(adWhaleMediationAdView, params);
 
         adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
             @Override
@@ -75,19 +77,19 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
             switch (checkedId) {
                 case R.id.rdBanner320x50:
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x50;
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조");
+                    etPlacementUid.setText(getString(R.string.banner32050_placementUid));
                     break;
                 case R.id.rdBanner320x100:
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x100;
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조");
+                    etPlacementUid.setText(getString(R.string.banner320100_placementUid));
                     break;
                 case R.id.rdBanner300x250:
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER300x250;
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조");
+                    etPlacementUid.setText(getString(R.string.banner300250_placementUid));
                     break;
                 case R.id.rdBanner250x250:
                     selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER250x250;
-                    etPlacementUid.setText("ADwhale Mediation SDK 가이드 내 키값 참조");
+                    etPlacementUid.setText(getString(R.string.banner250250_placementUid));
                     break;
                 default:
                     selectedAdWhaleAdSize = null;

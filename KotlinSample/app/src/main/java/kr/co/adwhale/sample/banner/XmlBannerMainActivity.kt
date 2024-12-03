@@ -3,25 +3,30 @@ package kr.co.adwhale.sample.banner
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kr.co.adwhale.sample.R
+import kr.co.adwhale.sample.databinding.ActivityXmlBannerMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener
 
 class XmlBannerMainActivity : AppCompatActivity() {
+    private var mBinding: ActivityXmlBannerMainBinding? = null
+    private val binding get() = mBinding!!
 
     private lateinit var adWhaleMediationAdView : AdWhaleMediationAdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_xml_banner_main)
+        mBinding = ActivityXmlBannerMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        AdWhaleMediationAds.init(this, AdWhaleMediationOnInitCompleteListener { statusCode, message ->
-            Log.i(XmlBannerMainActivity::class.simpleName, "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)")
-        })
+        AdWhaleMediationAds.init(this) { statusCode, message ->
+            Log.i(
+                XmlBannerMainActivity::class.simpleName,
+                "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"
+            )
+        }
 
-        adWhaleMediationAdView = findViewById(R.id.test)
+        adWhaleMediationAdView = binding.test
         adWhaleMediationAdView.adWhaleMediationAdViewListener =
             object : AdWhaleMediationAdViewListener {
                 override fun onAdLoaded() {
@@ -41,17 +46,18 @@ class XmlBannerMainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume()
         adWhaleMediationAdView.resume()
+        super.onResume()
     }
 
     override fun onPause() {
-        super.onPause()
         adWhaleMediationAdView.pause()
+        super.onPause()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         adWhaleMediationAdView.destroy()
+        mBinding = null
+        super.onDestroy()
     }
 }

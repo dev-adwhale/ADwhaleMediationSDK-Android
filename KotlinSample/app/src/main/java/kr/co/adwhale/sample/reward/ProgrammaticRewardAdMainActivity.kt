@@ -2,18 +2,20 @@ package kr.co.adwhale.sample.reward
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kr.co.adwhale.sample.R
+import kr.co.adwhale.sample.databinding.ActivityProgrammaticRewardAdMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback
 
 class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
+    private var mBinding: ActivityProgrammaticRewardAdMainBinding? = null
+    private val binding get() = mBinding!!
+
     private lateinit var btnTest: Button
 
     private lateinit var btnShow: Button
@@ -24,21 +26,21 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programmatic_reward_ad_main)
-        btnTest = findViewById(R.id.btnTest)
-        btnShow = findViewById<Button>(R.id.btnShow)
-        etPlacementUid = findViewById(R.id.etPlacementUid)
+        mBinding = ActivityProgrammaticRewardAdMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        AdWhaleMediationAds.init(
-            this
-        ) { statusCode, message ->
+        btnTest = binding.btnTest
+        btnShow = binding.btnShow
+        etPlacementUid = binding.etPlacementUid
+
+        AdWhaleMediationAds.init(this) { statusCode, message ->
             Log.i(
                 ProgrammaticRewardAdMainActivity::class.java.simpleName,
                 ".onInitComplete($statusCode, $message)"
             )
         }
 
-        adWhaleMediationRewardAd = AdWhaleMediationRewardAd(etPlacementUid.getText().toString())
+        adWhaleMediationRewardAd = AdWhaleMediationRewardAd(etPlacementUid.text.toString())
 
         adWhaleMediationRewardAd.setAdWhaleMediationFullScreenContentCallback(object :
             AdWhaleMediationFullScreenContentCallback {
@@ -68,7 +70,7 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
             }
         })
 
-        btnTest.setOnClickListener(View.OnClickListener { view: View? ->
+        btnTest.setOnClickListener {
             adWhaleMediationRewardAd.loadAd(object : AdWhaleMediationRewardedAdLoadCallback {
                 override fun onAdLoaded(
                     adWhaleMediationRewardAd: AdWhaleMediationRewardAd?,
@@ -97,20 +99,20 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
                     ).show()
                 }
             })
-        })
+        }
 
-        btnShow.setOnClickListener(View.OnClickListener { view: View? ->
+        btnShow.setOnClickListener {
             adWhaleMediationRewardAd.showAd { adWhaleMediationRewardItem ->
                 Log.i(
                     ProgrammaticRewardAdMainActivity::class.java.simpleName,
-                    ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")"
+                    ".onUserRewarded($adWhaleMediationRewardItem)"
                 )
                 Toast.makeText(
                     applicationContext,
-                    ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")",
+                    ".onUserRewarded($adWhaleMediationRewardItem)",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        })
+        }
     }
 }

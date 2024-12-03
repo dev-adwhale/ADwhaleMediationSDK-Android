@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -28,30 +27,27 @@ public class SampleMainActivity extends AppCompatActivity {
         Button btnInterstitial = findViewById(R.id.btnInterstitial);
         Button btnRewardAd = findViewById(R.id.btnRewardAd);
 
+        etMediaUid.setText(getMetaData());
         btnProgrammaticBanner.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
-            Log.e("meta:", getMetaData());
             Intent intent = new Intent(this, ProgrammaticBannerMainActivity.class);
             startActivity(intent);
         });
 
         btnXmlBanner.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
-            Log.e("meta:", getMetaData());
             Intent intent = new Intent(this, XmlBannerMainActivity.class);
             startActivity(intent);
         });
 
         btnInterstitial.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
-            Log.e("meta:", getMetaData());
             Intent intent = new Intent(this, ProgrammaticInterstitialMainActivity.class);
             startActivity(intent);
         });
 
         btnRewardAd.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
-            Log.e("meta:", getMetaData());
             Intent intent = new Intent(this, ProgrammaticRewardAdMainActivity.class);
             startActivity(intent);
         });

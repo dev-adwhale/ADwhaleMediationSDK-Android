@@ -2,18 +2,18 @@ package kr.co.adwhale.sample.interstitial
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kr.co.adwhale.sample.R
+import kr.co.adwhale.sample.databinding.ActivityProgrammaticInterstitialMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener
 
 class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
+    private var mBinding: ActivityProgrammaticInterstitialMainBinding? = null
+    private val binding get() = mBinding!!
 
     private lateinit var etPlacementUid : EditText
     private lateinit var btnTest : Button
@@ -22,15 +22,19 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programmatic_interstitial_main)
+        mBinding = ActivityProgrammaticInterstitialMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        etPlacementUid = findViewById(R.id.etPlacementUid)
-        btnTest = findViewById(R.id.btnTest)
-        btnShow = findViewById(R.id.btnShow)
+        etPlacementUid = binding.etPlacementUid
+        btnTest = binding.btnTest
+        btnShow = binding.btnShow
 
-        AdWhaleMediationAds.init(this, AdWhaleMediationOnInitCompleteListener { statusCode, message ->
-            Log.i(ProgrammaticInterstitialMainActivity::class.simpleName, "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)")
-        })
+        AdWhaleMediationAds.init(this) { statusCode, message ->
+            Log.i(
+                ProgrammaticInterstitialMainActivity::class.simpleName,
+                "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"
+            )
+        }
 
         adWhaleMediationInterstitialAd = AdWhaleMediationInterstitialAd(etPlacementUid.text.toString())
         adWhaleMediationInterstitialAd.setAdWhaleMediationInterstitialAdListener(object :
@@ -73,11 +77,16 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
             }
         })
 
-        btnTest.setOnClickListener(View.OnClickListener { view: View? ->
+        btnTest.setOnClickListener {
             adWhaleMediationInterstitialAd.loadAd()
-        })
-        btnShow.setOnClickListener(View.OnClickListener { view: View? ->
+        }
+        btnShow.setOnClickListener {
             adWhaleMediationInterstitialAd.showAd()
-        })
+        }
+    }
+
+    override fun onDestroy() {
+        mBinding = null
+        super.onDestroy()
     }
 }

@@ -18,12 +18,7 @@
         android:theme="@style/Theme.TOKTOKTOKKOTLINSAMPLE"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".reward.ProgrammaticRewardAdMainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProgrammaticPreloadBannerMainActivity"
-            android:exported="true" />
+
         <activity
             android:name=".SampleMainActivity"
             android:exported="true">
@@ -33,14 +28,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".interstitial.ProgrammaticInterstitialMainActivity"
+            android:name=".banner.ProgrammaticBannerMainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:exported="true" />
         <activity
             android:name=".banner.XmlBannerMainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:exported="true" />
+
         <activity
-            android:name=".banner.ProgrammaticBannerMainActivity"
+            android:name=".reward.ProgrammaticRewardAdMainActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".interstitial.ProgrammaticInterstitialMainActivity"
             android:exported="true" />
 
         <meta-data

@@ -13,9 +13,7 @@
         android:theme="@style/Theme.ADWHALEMEDIATIONANDROIDSAMPLE"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".reward.ProgrammaticRewardAdMainActivity"
-            android:exported="true" />
+
         <activity
             android:name=".SampleMainActivity"
             android:exported="true">
@@ -25,16 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".interstitial.ProgrammaticInterstitialMainActivity"
-            android:exported="true" />
+
         <activity
             android:name=".banner.ProgrammaticBannerMainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:exported="true" />
         <activity
             android:name=".banner.XmlBannerMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:exported="true" />
+        <activity
+            android:name=".interstitial.ProgrammaticInterstitialMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".reward.ProgrammaticRewardAdMainActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="net.adwhale.sdk.mediation.PUBLISHER_UID"
             android:value="ADwhale Mediation SDK 가이드 내 키값 참조" />

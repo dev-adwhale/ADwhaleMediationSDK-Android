@@ -3,59 +3,53 @@ package kr.co.adwhale.sample
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.adwhale.sample.banner.ProgrammaticBannerMainActivity
 import kr.co.adwhale.sample.banner.XmlBannerMainActivity
+import kr.co.adwhale.sample.databinding.ActivitySampleMainBinding
 import kr.co.adwhale.sample.interstitial.ProgrammaticInterstitialMainActivity
 import kr.co.adwhale.sample.reward.ProgrammaticRewardAdMainActivity
 
 class SampleMainActivity : AppCompatActivity() {
+    private var mBinding: ActivitySampleMainBinding? = null
+    private val binding get() = mBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sample_main)
+        mBinding = ActivitySampleMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val etMediaUid = findViewById<EditText>(R.id.etMediaUid)
-        val btnProgrammaticBanner = findViewById<Button>(R.id.btnProgrammaticBanner)
-        val btnXmlBanner = findViewById<Button>(R.id.btnXmlBanner)
-        val btnInterstitial = findViewById<Button>(R.id.btnInterstitial)
-        val btnRewardAd = findViewById<Button>(R.id.btnRewardAd)
+        val etMediaUid = binding.etMediaUid
+        val btnProgrammaticBanner = binding.btnProgrammaticBanner
+        val btnXmlBanner = binding.btnXmlBanner
+        val btnInterstitial = binding.btnInterstitial
+        val btnRewardAd = binding.btnRewardAd
 
-        btnProgrammaticBanner.setOnClickListener { view: View? ->
+        etMediaUid.setText(getMetaData())
+        btnProgrammaticBanner.setOnClickListener {
             setMetaData(etMediaUid.text.toString())
-            Log.e("meta:", getMetaData()!!)
-            val intent = Intent(this, ProgrammaticBannerMainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProgrammaticBannerMainActivity::class.java))
         }
 
-        btnXmlBanner.setOnClickListener { view: View? ->
+        btnXmlBanner.setOnClickListener {
             setMetaData(etMediaUid.text.toString())
-            Log.e("meta:", getMetaData()!!)
-            val intent = Intent(this, XmlBannerMainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, XmlBannerMainActivity::class.java))
         }
 
-        btnInterstitial.setOnClickListener { view: View? ->
+        btnInterstitial.setOnClickListener {
             setMetaData(etMediaUid.text.toString())
-            Log.e("meta:", getMetaData()!!)
-            val intent = Intent(this, ProgrammaticInterstitialMainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProgrammaticInterstitialMainActivity::class.java))
         }
 
-        btnRewardAd.setOnClickListener { view: View? ->
+        btnRewardAd.setOnClickListener {
             setMetaData(etMediaUid.text.toString())
-            Log.e("meta:", getMetaData()!!)
-            val intent = Intent(this, ProgrammaticRewardAdMainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ProgrammaticRewardAdMainActivity::class.java))
         }
     }
 
 
     private fun setMetaData(value: String?) {
-        if (value == null || value.isEmpty()) {
+        if (value.isNullOrEmpty()) {
             return
         }
         try {
@@ -81,5 +75,10 @@ class SampleMainActivity : AppCompatActivity() {
         } catch (e: PackageManager.NameNotFoundException) {
             ""
         }
+    }
+
+    override fun onDestroy() {
+        mBinding = null
+        super.onDestroy()
     }
 }

@@ -11,17 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 
 import kr.co.adwhale.sample.R;
 
 public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
-
-    private Button btnTest;
-
-    private Button btnShow;
-
-    private EditText etPlacementUid;
 
     private AdWhaleMediationInterstitialAd adWhaleMediationInterstitialAd;
 
@@ -29,16 +22,11 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programmatic_interstitial_main);
-        btnTest = findViewById(R.id.btnTest);
-        btnShow = findViewById(R.id.btnShow);
-        etPlacementUid = findViewById(R.id.etPlacementUid);
+        Button btnTest = findViewById(R.id.btnTest);
+        Button btnShow = findViewById(R.id.btnShow);
+        EditText etPlacementUid = findViewById(R.id.etPlacementUid);
 
-        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
-            @Override
-            public void onInitComplete(int statusCode, String message) {
-                Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
-            }
-        });
+        AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
 
         adWhaleMediationInterstitialAd = new AdWhaleMediationInterstitialAd(etPlacementUid.getText().toString());
         adWhaleMediationInterstitialAd.setAdWhaleMediationInterstitialAdListener(new AdWhaleMediationInterstitialAdListener() {
@@ -72,12 +60,8 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), ".onAdClosed()", Toast.LENGTH_SHORT).show();
             }
         });
-        btnTest.setOnClickListener(view -> {
-            adWhaleMediationInterstitialAd.loadAd();
-        });
+        btnTest.setOnClickListener(view -> adWhaleMediationInterstitialAd.loadAd());
 
-        btnShow.setOnClickListener(view -> {
-            adWhaleMediationInterstitialAd.showAd();
-        });
+        btnShow.setOnClickListener(view -> adWhaleMediationInterstitialAd.showAd());
     }
 }

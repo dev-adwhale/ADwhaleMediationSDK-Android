@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback;
 
@@ -18,28 +17,17 @@ import kr.co.adwhale.sample.R;
 
 public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
 
-    private Button btnTest;
-
-    private Button btnShow;
-
-    private EditText etPlacementUid;
-
     private AdWhaleMediationRewardAd adWhaleMediationRewardAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_programmatic_reward_ad_main);
-        btnTest = findViewById(R.id.btnTest);
-        btnShow = findViewById(R.id.btnShow);
-        etPlacementUid = findViewById(R.id.etPlacementUid);
+        Button btnTest = findViewById(R.id.btnTest);
+        Button btnShow = findViewById(R.id.btnShow);
+        EditText etPlacementUid = findViewById(R.id.etPlacementUid);
 
-        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
-            @Override
-            public void onInitComplete(int statusCode, String message) {
-                Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
-            }
-        });
+        AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
 
         adWhaleMediationRewardAd = new AdWhaleMediationRewardAd(etPlacementUid.getText().toString());
 
@@ -68,28 +56,23 @@ public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
             }
         });
 
-        btnTest.setOnClickListener(view -> {
-            adWhaleMediationRewardAd.loadAd(new AdWhaleMediationRewardedAdLoadCallback() {
-                @Override
-                public void onAdLoaded(AdWhaleMediationRewardAd adWhaleMediationRewardAd, String message) {
-                    Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onAdLoaded(" + message + ")");
-                    Toast.makeText(getApplicationContext(), ".onAdLoaded(" + message + ")", Toast.LENGTH_SHORT).show();
-                }
+        btnTest.setOnClickListener(view -> adWhaleMediationRewardAd.loadAd(new AdWhaleMediationRewardedAdLoadCallback() {
+            @Override
+            public void onAdLoaded(AdWhaleMediationRewardAd adWhaleMediationRewardAd, String message) {
+                Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onAdLoaded(" + message + ")");
+                Toast.makeText(getApplicationContext(), ".onAdLoaded(" + message + ")", Toast.LENGTH_SHORT).show();
+            }
 
-                @Override
-                public void onAdFailedToLoad(int statusCode, String message) {
-                    Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onAdFailedToLoad(" + statusCode + ", " + message + ")");
-                    Toast.makeText(getApplicationContext(), ".onAdFailedToLoad(statusCode:" + statusCode + ", message:" + message + ")", Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onAdFailedToLoad(int statusCode, String message) {
+                Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onAdFailedToLoad(" + statusCode + ", " + message + ")");
+                Toast.makeText(getApplicationContext(), ".onAdFailedToLoad(statusCode:" + statusCode + ", message:" + message + ")", Toast.LENGTH_SHORT).show();
+            }
+        }));
 
-        });
-
-        btnShow.setOnClickListener(view -> {
-            adWhaleMediationRewardAd.showAd(adWhaleMediationRewardItem -> {
-                Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")");
-                Toast.makeText(getApplicationContext(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")", Toast.LENGTH_SHORT).show();
-            });
-        });
+        btnShow.setOnClickListener(view -> adWhaleMediationRewardAd.showAd(adWhaleMediationRewardItem -> {
+            Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")");
+            Toast.makeText(getApplicationContext(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")", Toast.LENGTH_SHORT).show();
+        }));
     }
 }

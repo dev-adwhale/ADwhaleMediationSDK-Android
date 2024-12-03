@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
 
 import kr.co.adwhale.sample.R;
 
@@ -43,15 +42,10 @@ public class XmlBannerMainActivity extends AppCompatActivity {
             }
         });
 
-        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
-            @Override
-            public void onInitComplete(int statusCode, String message) {
-                Log.i(XmlBannerMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
-                if(adWhaleMediationAdView != null){
-                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                        adWhaleMediationAdView.loadAd();
-                    },0);
-                }
+        AdWhaleMediationAds.init(this, (statusCode, message) -> {
+            Log.i(XmlBannerMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
+            if(adWhaleMediationAdView != null){
+                new Handler(Looper.getMainLooper()).postDelayed(() -> adWhaleMediationAdView.loadAd(),0);
             }
         });
 

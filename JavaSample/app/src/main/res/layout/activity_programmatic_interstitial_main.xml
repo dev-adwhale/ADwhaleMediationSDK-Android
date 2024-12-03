@@ -26,7 +26,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:hint="placementUid 입력"
-        android:text="ADwhale Mediation SDK 가이드 내 키값 참조"
+        android:text="@string/interstitial_placementUid"
         app:layout_constraintTop_toBottomOf="@+id/tvPlacementUid"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
