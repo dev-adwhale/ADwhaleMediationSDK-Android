@@ -9,6 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.adwhale.sample.R
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback
 
 class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
     private lateinit var btnTest: Button
@@ -38,17 +41,17 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
         adWhaleMediationRewardAd = AdWhaleMediationRewardAd(etPlacementUid.getText().toString())
 
         adWhaleMediationRewardAd.setAdWhaleMediationFullScreenContentCallback(object :
-            AdWhaleMediationFullScreenContentCallback() {
-            fun onAdClicked() {
+            AdWhaleMediationFullScreenContentCallback {
+            override fun onAdClicked() {
                 Log.i(ProgrammaticRewardAdMainActivity::class.java.simpleName, ".onAdClicked()")
             }
 
-            fun onAdDismissed() {
+            override fun onAdDismissed() {
                 Log.i(ProgrammaticRewardAdMainActivity::class.java.simpleName, ".onAdDismissed()")
                 Toast.makeText(applicationContext, ".onAdDismissed()", Toast.LENGTH_SHORT).show()
             }
 
-            fun onFailedToShow(statusCode: Int, message: String) {
+            override fun onFailedToShow(statusCode: Int, message: String) {
                 Log.i(
                     ProgrammaticRewardAdMainActivity::class.java.simpleName,
                     ".onFailedToShow($statusCode, $message)"
@@ -59,15 +62,15 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
                 ).show()
             }
 
-            fun onAdShowed() {
+            override fun onAdShowed() {
                 Log.i(ProgrammaticRewardAdMainActivity::class.java.simpleName, ".onAdShowed()")
                 Toast.makeText(applicationContext, ".onAdShowed()", Toast.LENGTH_SHORT).show()
             }
         })
 
         btnTest.setOnClickListener(View.OnClickListener { view: View? ->
-            adWhaleMediationRewardAd.loadAd(object : AdWhaleMediationRewardedAdLoadCallback() {
-                fun onAdLoaded(
+            adWhaleMediationRewardAd.loadAd(object : AdWhaleMediationRewardedAdLoadCallback {
+                override fun onAdLoaded(
                     adWhaleMediationRewardAd: AdWhaleMediationRewardAd?,
                     message: String
                 ) {
@@ -82,7 +85,7 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
                     ).show()
                 }
 
-                fun onAdFailedToLoad(statusCode: Int, message: String) {
+                override fun onAdFailedToLoad(statusCode: Int, message: String) {
                     Log.i(
                         ProgrammaticRewardAdMainActivity::class.java.simpleName,
                         ".onAdFailedToLoad($statusCode, $message)"
