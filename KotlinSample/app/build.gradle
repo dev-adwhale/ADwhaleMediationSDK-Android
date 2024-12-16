@@ -3,9 +3,21 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'kr.co.adwhale.sample'
     compileSdk 34
+
+    signingConfigs{
+        release{
+            storeFile file(properties["keystore"])
+            storePassword properties["keystore_pass"]
+            keyAlias properties["keystore_alias"]
+            keyPassword properties["key_pass"]
+        }
+    }
 
     defaultConfig {
         applicationId "kr.co.adwhale.sample"
@@ -21,6 +33,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
