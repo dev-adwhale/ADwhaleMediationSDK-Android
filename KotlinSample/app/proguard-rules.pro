@@ -37,6 +37,7 @@
     public <init>(...);
     public *** loadAd();
     public *** showAd();
+    public *** destroy();
     public *** setAdWhaleMediationInterstitialAdListener(***);
 }
 
@@ -46,6 +47,7 @@
     public <init>(...);
     public *** loadAd(***);
     public *** showAd(***);
+    public *** destroy();
     public *** setAdWhaleMediationFullScreenContentCallback(***);
 }
 
@@ -110,12 +112,14 @@
 
 #================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
-#================== AdWhale Techlabs Adapter SDK Proguard for Release 적용 코드 시작 ==================
+#================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 시작 ==================
 
--keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdBannerLoader {*;}
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdBannerLoader {*;}
 
--keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdBannerPreLoader {*;}
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdBannerPreLoader {*;}
 
--keep class net.adwhale.sdk.techlabs.adapter.TechlabsAdInterstitialLoader {*;}
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdInterstitialLoader {*;}
 
-#================== AdWhale Techlabs Adapter SDK Proguard for Release 적용 코드 끝 ==================
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
+
+#================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 끝 ==================

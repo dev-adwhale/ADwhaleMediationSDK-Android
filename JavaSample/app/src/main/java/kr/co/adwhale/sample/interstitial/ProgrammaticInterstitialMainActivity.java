@@ -59,6 +59,12 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
                 Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdClosed()");
                 Toast.makeText(getApplicationContext(), ".onAdClosed()", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onAdClicked() {
+                Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdClicked()");
+                Toast.makeText(getApplicationContext(), ".onAdClicked()", Toast.LENGTH_SHORT).show();
+            }
         });
         btnTest.setOnClickListener(view -> adWhaleMediationInterstitialAd.loadAd());
 

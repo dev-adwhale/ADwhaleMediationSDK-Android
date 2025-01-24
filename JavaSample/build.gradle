@@ -31,13 +31,13 @@ allprojects {
 
         // Cauly SDK Repository Public Access Info
         maven {
-            url "s3://repo.cauly.net/releases"
-            credentials(AwsCredentials) {
-                accessKey "ADwhale Mediation SDK 가이드 내 키값 참조"
-                secretKey "ADwhale Mediation SDK 가이드 내 키값 참조"
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/cauly/Android-SDK/SDK")
+            credentials {
+                username = 'ADwhale Mediation SDK 가이드 내 키값 참조'
+                password = 'ADwhale Mediation SDK 가이드 내 키값 참조'
             }
         }
-
         // Admize SDK Repository Public Access Info
         maven {
             name = "GitHubPackages"
@@ -50,9 +50,6 @@ allprojects {
 
         // AdFit SDK Repository Public Access Info
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
-
-        // Bidmad SDK Repository Public Access Info
-        maven { url "https://bidmad-sdk.s3.amazonaws.com/" }
     }
 }
 

@@ -75,6 +75,11 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
                 Log.i(ProgrammaticInterstitialMainActivity::class.java.simpleName, ".onAdClosed()")
                 Toast.makeText(applicationContext, ".onAdClosed()", Toast.LENGTH_SHORT).show()
             }
+
+            override fun onAdClicked() {
+                Log.i(ProgrammaticInterstitialMainActivity::class.java.simpleName, ".onAdClicked()")
+                Toast.makeText(applicationContext, ".onAdClicked()", Toast.LENGTH_SHORT).show()
+            }
         })
 
         btnTest.setOnClickListener {
