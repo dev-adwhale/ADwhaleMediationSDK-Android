@@ -49,9 +49,6 @@
         <meta-data
             android:name="net.adwhale.sdk.mediation.PUBLISHER_UID"
             android:value="ADwhale Mediation SDK 가이드 내 키값 참조" />
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="Google AdMob 에서 발급한 키값" />
     </application>
 
 </manifest>
