@@ -112,6 +112,18 @@
 
 #================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
+#================== AdWhale AdManager Adapter SDK Proguard for Release 적용 코드 시작 ==================
+
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdBannerLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdBannerPreLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdInterstitialLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
+
+#================== AdWhale AdManager Adapter SDK Proguard for Release 적용 코드 끝 ==================
+
 #================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 시작 ==================
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdBannerLoader {*;}
