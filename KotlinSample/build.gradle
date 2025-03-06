@@ -1,4 +1,16 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+def githubAdWhalePackagesUsername = localProperties.getProperty("github_access_token_adwhale_username") ?: ""
+def githubAdWhalePackagesPassword = localProperties.getProperty("github_access_token_adwhale_password") ?: ""
+def githubCaulyPackagesUsername = localProperties.getProperty("github_access_token_cauly_username") ?: ""
+def githubCaulyPackagesPassword = localProperties.getProperty("github_access_token_cauly_password") ?: ""
+def githubAdmizePackagesUsername = localProperties.getProperty("github_access_token_admize_username") ?: ""
+def githubAdmizePackagesPassword = localProperties.getProperty("github_access_token_admize_password") ?: ""
+
 buildscript {
     repositories {
         google()
@@ -24,8 +36,8 @@ allprojects {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/dev-adwhale/AdWhaleAndroid/SDK")
             credentials {
-                username = 'ADwhale Mediation SDK 가이드 내 키값 참조'
-                password = 'ADwhale Mediation SDK 가이드 내 키값 참조'
+                username = githubAdWhalePackagesUsername // SDK 부록페이지의 username 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
+                password = githubAdWhalePackagesPassword // SDK 부록페이지의 password 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
             }
         }
 
@@ -34,9 +46,8 @@ allprojects {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/cauly/Android-SDK/SDK")
             credentials {
-                username = 'ADwhale Mediation SDK 가이드 내 키값 참조'
-                password = 'ADwhale Mediation SDK 가이드 내 키값 참조'
-
+                username = githubCaulyPackagesUsername // SDK 부록페이지의 username 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
+                password = githubCaulyPackagesPassword // SDK 부록페이지의 password 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
             }
         }
         // Admize SDK Repository Public Access Info
@@ -44,8 +55,8 @@ allprojects {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/cauly/admize-sdk-android/SDK")
             credentials {
-                username = 'ADwhale Mediation SDK 가이드 내 키값 참조'
-                password = 'ADwhale Mediation SDK 가이드 내 키값 참조'
+                username = githubAdmizePackagesUsername // SDK 부록페이지의 username 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
+                password = githubAdmizePackagesPassword // SDK 부록페이지의 password 입력(https://adwhale.gitbook.io/sdk-android-appendix 참고)
             }
         }
 
