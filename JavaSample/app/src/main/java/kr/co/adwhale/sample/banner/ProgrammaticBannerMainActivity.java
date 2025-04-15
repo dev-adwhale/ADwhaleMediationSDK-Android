@@ -17,6 +17,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
+import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
 
@@ -40,6 +41,8 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
         rgBannerAdSize = findViewById(R.id.rgBannerAdSize);
         etPlacementUid = findViewById(R.id.etPlacementUid);
         bannerRoot = (RelativeLayout) findViewById(R.id.bannerRoot);
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
 
         AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
             @Override

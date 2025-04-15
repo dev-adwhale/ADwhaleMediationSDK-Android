@@ -12,6 +12,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback;
+import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
 
@@ -26,6 +27,8 @@ public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
         Button btnTest = findViewById(R.id.btnTest);
         Button btnShow = findViewById(R.id.btnShow);
         EditText etPlacementUid = findViewById(R.id.etPlacementUid);
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
 
         AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
 

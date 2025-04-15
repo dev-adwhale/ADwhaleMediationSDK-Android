@@ -11,6 +11,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback
+import net.adwhale.sdk.utils.AdWhaleLog
 
 class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
     private var mBinding: ActivityProgrammaticRewardAdMainBinding? = null
@@ -32,6 +33,8 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
         btnTest = binding.btnTest
         btnShow = binding.btnShow
         etPlacementUid = binding.etPlacementUid
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
 
         AdWhaleMediationAds.init(this) { statusCode, message ->
             Log.i(

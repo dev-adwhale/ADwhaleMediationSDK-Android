@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
+import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
 
@@ -22,6 +23,9 @@ public class XmlBannerMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xml_banner_main);
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
+
         adWhaleMediationAdView = findViewById(R.id.test);
         adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
             @Override

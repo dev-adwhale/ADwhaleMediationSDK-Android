@@ -1,6 +1,5 @@
 package kr.co.adwhale.sample.banner
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,12 +7,14 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
 import kr.co.adwhale.sample.R
 import kr.co.adwhale.sample.databinding.ActivityProgrammaticBannerMainBinding
 import net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
+import net.adwhale.sdk.utils.AdWhaleLog
 
 class ProgrammaticBannerMainActivity : AppCompatActivity() {
     private var mBinding: ActivityProgrammaticBannerMainBinding? = null
@@ -35,6 +36,8 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
         rgBannerAdSize = binding.rgBannerAdSize
         etPlacementUid = binding.etPlacementUid
         bannerRoot = binding.bannerRoot
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
 
         AdWhaleMediationAds.init(this) { statusCode, message ->
             Log.i(

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener;
+import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
 
@@ -25,6 +26,8 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
         Button btnTest = findViewById(R.id.btnTest);
         Button btnShow = findViewById(R.id.btnShow);
         EditText etPlacementUid = findViewById(R.id.etPlacementUid);
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
 
         AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
 

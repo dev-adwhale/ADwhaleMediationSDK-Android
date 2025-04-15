@@ -10,6 +10,7 @@ import kr.co.adwhale.sample.databinding.ActivityProgrammaticInterstitialMainBind
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener
+import net.adwhale.sdk.utils.AdWhaleLog
 
 class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
     private var mBinding: ActivityProgrammaticInterstitialMainBinding? = null
@@ -28,6 +29,8 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
         etPlacementUid = binding.etPlacementUid
         btnTest = binding.btnTest
         btnShow = binding.btnShow
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
 
         AdWhaleMediationAds.init(this) { statusCode, message ->
             Log.i(

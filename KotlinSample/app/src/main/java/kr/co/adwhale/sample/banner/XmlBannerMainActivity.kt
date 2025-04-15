@@ -7,6 +7,7 @@ import kr.co.adwhale.sample.databinding.ActivityXmlBannerMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
+import net.adwhale.sdk.utils.AdWhaleLog
 
 class XmlBannerMainActivity : AppCompatActivity() {
     private var mBinding: ActivityXmlBannerMainBinding? = null
@@ -18,6 +19,8 @@ class XmlBannerMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityXmlBannerMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
 
         AdWhaleMediationAds.init(this) { statusCode, message ->
             Log.i(
