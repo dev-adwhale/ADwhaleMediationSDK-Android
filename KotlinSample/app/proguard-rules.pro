@@ -43,6 +43,7 @@
     public <init>(...);
     public *** loadAd();
     public *** showAd();
+    public *** showAd(***);
     public *** destroy();
     public *** setAdWhaleMediationInterstitialAdListener(***);
 }
