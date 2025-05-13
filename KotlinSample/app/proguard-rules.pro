@@ -144,6 +144,8 @@
 
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
 
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardLoader {*;}
+
 #================== AdWhale AdManager Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
 #================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 시작 ==================
@@ -157,6 +159,8 @@
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdNativeLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardLoader {*;}
 
 #================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
