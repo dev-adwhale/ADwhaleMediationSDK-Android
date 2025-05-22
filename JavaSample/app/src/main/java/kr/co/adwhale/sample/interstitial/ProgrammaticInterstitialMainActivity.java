@@ -27,9 +27,10 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
         Button btnShow = findViewById(R.id.btnShow);
         EditText etPlacementUid = findViewById(R.id.etPlacementUid);
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
-
-        AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
+        AdWhaleMediationAds.init(this, (statusCode, message) -> {
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose);
+            Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
+        });
 
         adWhaleMediationInterstitialAd = new AdWhaleMediationInterstitialAd(etPlacementUid.getText().toString());
         adWhaleMediationInterstitialAd.setAdWhaleMediationInterstitialAdListener(new AdWhaleMediationInterstitialAdListener() {

@@ -20,9 +20,8 @@ class XmlBannerMainActivity : AppCompatActivity() {
         mBinding = ActivityXmlBannerMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
-
         AdWhaleMediationAds.init(this) { statusCode, message ->
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose)
             Log.i(
                 XmlBannerMainActivity::class.simpleName,
                 "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"

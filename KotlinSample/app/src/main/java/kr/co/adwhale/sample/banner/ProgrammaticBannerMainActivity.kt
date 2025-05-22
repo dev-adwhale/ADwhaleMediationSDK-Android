@@ -37,9 +37,8 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
         etPlacementUid = binding.etPlacementUid
         bannerRoot = binding.bannerRoot
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
-
         AdWhaleMediationAds.init(this) { statusCode, message ->
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose)
             Log.i(
                 ProgrammaticBannerMainActivity::class.simpleName,
                 "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"

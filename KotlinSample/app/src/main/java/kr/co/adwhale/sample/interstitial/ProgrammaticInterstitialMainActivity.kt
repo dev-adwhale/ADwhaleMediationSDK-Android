@@ -30,9 +30,8 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
         btnTest = binding.btnTest
         btnShow = binding.btnShow
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
-
         AdWhaleMediationAds.init(this) { statusCode, message ->
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose)
             Log.i(
                 ProgrammaticInterstitialMainActivity::class.simpleName,
                 "AdWhaleMediationOnInitCompleteListener.onInitComplete($statusCode, $message)"

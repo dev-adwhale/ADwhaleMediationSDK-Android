@@ -24,8 +24,6 @@ public class XmlBannerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xml_banner_main);
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
-
         adWhaleMediationAdView = findViewById(R.id.test);
         adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
             @Override
@@ -47,6 +45,7 @@ public class XmlBannerMainActivity extends AppCompatActivity {
         });
 
         AdWhaleMediationAds.init(this, (statusCode, message) -> {
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose);
             Log.i(XmlBannerMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
             if(adWhaleMediationAdView != null){
                 new Handler(Looper.getMainLooper()).postDelayed(() -> adWhaleMediationAdView.loadAd(),0);

@@ -28,9 +28,10 @@ public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
         Button btnShow = findViewById(R.id.btnShow);
         EditText etPlacementUid = findViewById(R.id.etPlacementUid);
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
-
-        AdWhaleMediationAds.init(this, (statusCode, message) -> Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")"));
+        AdWhaleMediationAds.init(this, (statusCode, message) -> {
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose);
+            Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
+        });
 
         adWhaleMediationRewardAd = new AdWhaleMediationRewardAd(etPlacementUid.getText().toString());
 

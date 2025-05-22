@@ -34,9 +34,8 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
         btnShow = binding.btnShow
         etPlacementUid = binding.etPlacementUid
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None)
-
         AdWhaleMediationAds.init(this) { statusCode, message ->
+            AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose)
             Log.i(
                 ProgrammaticRewardAdMainActivity::class.java.simpleName,
                 ".onInitComplete($statusCode, $message)"

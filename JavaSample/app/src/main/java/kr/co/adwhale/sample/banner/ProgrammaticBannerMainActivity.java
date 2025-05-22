@@ -42,11 +42,10 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
         etPlacementUid = findViewById(R.id.etPlacementUid);
         bannerRoot = (RelativeLayout) findViewById(R.id.bannerRoot);
 
-        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.None);
-
         AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
             @Override
             public void onInitComplete(int statusCode, String message) {
+                AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Verbose);
                 Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), ".onInitComplete(" + statusCode + ", " + message + ")");
             }
         });
