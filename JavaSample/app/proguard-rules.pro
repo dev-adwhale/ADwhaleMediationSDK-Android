@@ -44,6 +44,8 @@
     public *** loadAd();
     public *** showAd();
     public *** showAd(***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
     public *** destroy();
     public *** setAdWhaleMediationInterstitialAdListener(***);
 }
@@ -54,6 +56,8 @@
     public <init>(...);
     public *** loadAd(***);
     public *** showAd(***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
     public *** destroy();
     public *** setAdWhaleMediationFullScreenContentCallback(***);
 }
@@ -70,6 +74,8 @@
     public *** setAdWhaleMediationNativeAdViewListener(***);
     public *** setNativeAdSize(***, ***);
     public *** setPlacementUid(***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
     public *** resume();
     public *** pause();
 }
@@ -83,6 +89,8 @@
     public *** setAdWhaleMediationAdViewListener(***);
     public *** setAdwhaleAdSize(***);
     public *** setPlacementUid(***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
     public *** resume();
     public *** pause();
 }
@@ -93,6 +101,8 @@
     public <init>(...);
     public *** loadAd();
     public *** show();
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
     public *** destroy();
     public *** setAdWhaleMediationAdBannerViewListener(***);
     public *** resume();
@@ -142,9 +152,9 @@
 
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdNativeLoader {*;}
 
--keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
-
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
 
 #================== AdWhale AdManager Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
@@ -158,9 +168,9 @@
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdNativeLoader {*;}
 
--keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
-
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
 
 #================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
