@@ -56,6 +56,7 @@
     public <init>(...);
     public *** loadAd(***);
     public *** showAd(***);
+    public *** showAd(***, ***);
     public *** setRegion(***);
     public *** setGcoder(***, ***);
     public *** destroy();
@@ -119,6 +120,8 @@
 -keep class net.adwhale.sdk.cauly.adapter.CaulyAdBannerPreLoader {*;}
 
 -keep class net.adwhale.sdk.cauly.adapter.CaulyAdInterstitialLoader {*;}
+
+-keep class net.adwhale.sdk.cauly.adapter.CaulyAdRewardLoader {*;}
 
 #================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
