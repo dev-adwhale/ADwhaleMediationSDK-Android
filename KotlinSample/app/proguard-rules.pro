@@ -46,6 +46,7 @@
     public *** showAd(***);
     public *** setRegion(***);
     public *** setGcoder(***, ***);
+    public *** setPlacementName(***);
     public *** destroy();
     public *** setAdWhaleMediationInterstitialAdListener(***);
 }
@@ -59,6 +60,7 @@
     public *** showAd(***, ***);
     public *** setRegion(***);
     public *** setGcoder(***, ***);
+    public *** setPlacementName(***);
     public *** destroy();
     public *** setAdWhaleMediationFullScreenContentCallback(***);
 }
@@ -92,6 +94,7 @@
     public *** setPlacementUid(***);
     public *** setRegion(***);
     public *** setGcoder(***, ***);
+    public *** setPlacementName(***);
     public *** resume();
     public *** pause();
 }
@@ -104,6 +107,7 @@
     public *** show();
     public *** setRegion(***);
     public *** setGcoder(***, ***);
+    public *** setPlacementName(***);
     public *** destroy();
     public *** setAdWhaleMediationAdBannerViewListener(***);
     public *** resume();
