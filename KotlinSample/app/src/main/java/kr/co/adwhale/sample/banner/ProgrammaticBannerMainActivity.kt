@@ -14,6 +14,7 @@ import net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo
 import net.adwhale.sdk.utils.AdWhaleLog
 
 class ProgrammaticBannerMainActivity : AppCompatActivity() {
@@ -54,7 +55,7 @@ class ProgrammaticBannerMainActivity : AppCompatActivity() {
         adWhaleMediationAdView.adWhaleMediationAdViewListener =
             object : AdWhaleMediationAdViewListener {
 
-                override fun onAdLoaded() {
+                override fun onAdLoaded(adWhaleMediationResponseInfo: AdWhaleMediationResponseInfo?) {
                     Log.i(ProgrammaticBannerMainActivity::class.simpleName, ".onAdLoaded()")
                 }
 

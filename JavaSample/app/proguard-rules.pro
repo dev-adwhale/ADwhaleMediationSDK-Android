@@ -20,9 +20,18 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 시작 ==================
+
 -keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAds {
     public static *** init(***);
     public static *** init(***, ***);
+    public static *** setCoppa(***);
+    public static *** setGdpr(***);
+    public static *** getGdpr(***);
+    public static *** requestGdprConsent(***, ***);
+    public static *** isCoppaApplied();
+    public static *** getGdprConsentStatus(***);
+    public static *** resetGdprConsentStatus(***);
+    public static *** getAdwhaleGDPR(***);
 }
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener {*;}
@@ -34,6 +43,8 @@
 
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE {*;}
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_RESULT_CODE {*;}
+-keep class net.adwhale.sdk.mediation.ads.GdprConsentStatus {*;}
+
 -keep class net.adwhale.sdk.utils.AdWhaleLog$LogLevel{*;}
 -keep class net.adwhale.sdk.impl.mediation.ReqMediationAdConfig {*;}
 -keep class net.adwhale.sdk.impl.mediation.ResMediationAdConfig {*;}
@@ -70,18 +81,7 @@
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback {*;}
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationUserEarnedRewardListener {*;}
 
--keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationNativeAdView {
-    public <init>(...);
-    public *** loadAd();
-    public *** destroy();
-    public *** setAdWhaleMediationNativeAdViewListener(***);
-    public *** setNativeAdSize(***, ***);
-    public *** setPlacementUid(***);
-    public *** setRegion(***);
-    public *** setGcoder(***, ***);
-    public *** resume();
-    public *** pause();
-}
+-keep class net.adwhale.sdk.mediation.ads.AdWhaleMediationNativeAdView {*;}
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationNativeAdViewListener {*;}
 
@@ -106,7 +106,6 @@
     public *** loadAd();
     public *** show();
     public *** setRegion(***);
-    public *** setGcoder(***, ***);
     public *** setPlacementName(***);
     public *** destroy();
     public *** setAdWhaleMediationAdBannerViewListener(***);
@@ -115,6 +114,7 @@
 }
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerViewListener {*;}
+
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 끝 ==================
 
 #================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 시작 ==================
@@ -157,8 +157,6 @@
 
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdInterstitialLoader {*;}
 
--keep class net.adwhale.sdk.admob.adapter.AdManagerAdNativeLoader {*;}
-
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
@@ -173,11 +171,14 @@
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdInterstitialLoader {*;}
 
--keep class net.adwhale.sdk.admob.adapter.AdmobAdNativeLoader {*;}
-
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
+
+# AdWhale AdMob Adapter - Keep the public entry points for reflection
+-keep public class net.adwhale.sdk.admob.adapter.AdMobPrivacyAdapter {
+    public static net.adwhale.sdk.admob.adapter.AdMobPrivacyAdapter getInstance();
+}
 
 #================== AdWhale Admob Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
@@ -190,5 +191,10 @@
 -keep class net.adwhale.sdk.levelplay.adapter.LevelPlayAdInterstitialLoader {*;}
 
 -keep class net.adwhale.sdk.levelplay.adapter.LevelPlayAdRewardLoader {*;}
+
+# AdWhale LevelPlay Adapter - Keep the public entry points for reflection
+-keep public class net.adwhale.sdk.levelplay.adapter.LevelPlayPrivacyAdapter {
+    public static net.adwhale.sdk.levelplay.adapter.LevelPlayPrivacyAdapter getInstance();
+}
 
 #================== AdWhale LevelPlay Adapter SDK Proguard for Release 적용 코드 끝 ==================

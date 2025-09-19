@@ -10,6 +10,7 @@ import kr.co.adwhale.sample.databinding.ActivityProgrammaticInterstitialMainBind
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo
 import net.adwhale.sdk.utils.AdWhaleLog
 
 class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
@@ -41,7 +42,7 @@ class ProgrammaticInterstitialMainActivity : AppCompatActivity(){
         adWhaleMediationInterstitialAd = AdWhaleMediationInterstitialAd(etPlacementUid.text.toString())
         adWhaleMediationInterstitialAd.setAdWhaleMediationInterstitialAdListener(object :
             AdWhaleMediationInterstitialAdListener {
-            override fun onAdLoaded() {
+            override fun onAdLoaded(adWhaleMediationResponseInfo: AdWhaleMediationResponseInfo?) {
                 Log.i(ProgrammaticInterstitialMainActivity::class.java.simpleName, ".onAdLoaded()")
                 Toast.makeText(applicationContext, ".onAdLoaded()", Toast.LENGTH_SHORT).show()
             }

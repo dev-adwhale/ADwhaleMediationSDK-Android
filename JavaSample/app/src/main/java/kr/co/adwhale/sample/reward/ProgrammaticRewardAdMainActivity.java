@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback;
 import net.adwhale.sdk.utils.AdWhaleLog;
@@ -61,8 +62,9 @@ public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
         });
 
         btnTest.setOnClickListener(view -> adWhaleMediationRewardAd.loadAd(new AdWhaleMediationRewardedAdLoadCallback() {
+
             @Override
-            public void onAdLoaded(AdWhaleMediationRewardAd adWhaleMediationRewardAd, String message) {
+            public void onAdLoaded(AdWhaleMediationRewardAd adWhaleMediationRewardAd, AdWhaleMediationResponseInfo adWhaleMediationResponseInfo, String message) {
                 Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onAdLoaded(" + message + ")");
                 Toast.makeText(getApplicationContext(), ".onAdLoaded(" + message + ")", Toast.LENGTH_SHORT).show();
             }

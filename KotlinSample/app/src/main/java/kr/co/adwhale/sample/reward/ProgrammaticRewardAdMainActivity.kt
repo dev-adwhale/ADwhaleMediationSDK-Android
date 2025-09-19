@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kr.co.adwhale.sample.databinding.ActivityProgrammaticRewardAdMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationFullScreenContentCallback
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardAd
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationRewardedAdLoadCallback
 import net.adwhale.sdk.utils.AdWhaleLog
@@ -76,6 +77,7 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
             adWhaleMediationRewardAd.loadAd(object : AdWhaleMediationRewardedAdLoadCallback {
                 override fun onAdLoaded(
                     adWhaleMediationRewardAd: AdWhaleMediationRewardAd?,
+                    adWhaleMediationResponseInfo: AdWhaleMediationResponseInfo?,
                     message: String
                 ) {
                     Log.i(

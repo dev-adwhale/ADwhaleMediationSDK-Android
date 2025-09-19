@@ -7,6 +7,7 @@ import kr.co.adwhale.sample.databinding.ActivityXmlBannerMainBinding
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo
 import net.adwhale.sdk.utils.AdWhaleLog
 
 class XmlBannerMainActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class XmlBannerMainActivity : AppCompatActivity() {
         adWhaleMediationAdView = binding.test
         adWhaleMediationAdView.adWhaleMediationAdViewListener =
             object : AdWhaleMediationAdViewListener {
-                override fun onAdLoaded() {
+                override fun onAdLoaded(adWhaleMediationResponseInfo: AdWhaleMediationResponseInfo?) {
                     Log.i(XmlBannerMainActivity::class.simpleName, ".onAdLoaded()")
                 }
 

@@ -17,6 +17,7 @@ import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdView;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAdViewListener;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo;
 import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
@@ -58,7 +59,7 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
 
         adWhaleMediationAdView.setAdWhaleMediationAdViewListener(new AdWhaleMediationAdViewListener() {
             @Override
-            public void onAdLoaded() {
+            public void onAdLoaded(AdWhaleMediationResponseInfo adWhaleMediationResponseInfo) {
                 Log.i(ProgrammaticBannerMainActivity.class.getSimpleName(), ".onAdLoaded()");
                 Toast.makeText(getApplicationContext(), ".onAdLoaded()", Toast.LENGTH_SHORT).show();
             }
