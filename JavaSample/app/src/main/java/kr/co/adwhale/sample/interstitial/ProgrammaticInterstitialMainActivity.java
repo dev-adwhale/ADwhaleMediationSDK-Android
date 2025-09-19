@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd;
 import net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAdListener;
-import net.adwhale.sdk.mediation.ads.AdWhaleMediationResponseInfo;
 import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.R;
@@ -36,7 +35,7 @@ public class ProgrammaticInterstitialMainActivity extends AppCompatActivity {
         adWhaleMediationInterstitialAd = new AdWhaleMediationInterstitialAd(etPlacementUid.getText().toString());
         adWhaleMediationInterstitialAd.setAdWhaleMediationInterstitialAdListener(new AdWhaleMediationInterstitialAdListener() {
             @Override
-            public void onAdLoaded(AdWhaleMediationResponseInfo adWhaleMediationResponseInfo) {
+            public void onAdLoaded() {
                 Log.i(ProgrammaticInterstitialMainActivity.class.getSimpleName(), ".onAdLoaded()");
                 Toast.makeText(getApplicationContext(), ".onAdLoaded()", Toast.LENGTH_SHORT).show();
             }
