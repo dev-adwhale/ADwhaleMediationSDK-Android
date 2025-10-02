@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 제목 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="스타일이 적용된 네이티브 템플릿 테스트"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Placement UID 입력 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Placement UID"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etPlacementUid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Placement UID를 입력하세요"
+            android:padding="12dp"
+            android:background="@drawable/edittext_border"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 로거 스위치 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="디버그 로그"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchLogger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+        </LinearLayout>
+
+        <!-- 템플릿 크기 선택 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="템플릿 크기 선택"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTemplate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radioSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Small"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medium" />
+
+            <RadioButton
+                android:id="@+id/radioFullscreen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Fullscreen" />
+
+        </RadioGroup>
+
+        <!-- 스타일 테마 선택 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="스타일 테마 선택"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radioDefault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기본 테마 (Default)"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다크 테마 (Dark)" />
+
+            <RadioButton
+                android:id="@+id/radioBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="브랜드 테마 (Brand)" />
+
+            <RadioButton
+                android:id="@+id/radioMinimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="미니멀 스타일 (Minimal)" />
+
+            <RadioButton
+                android:id="@+id/radioFullStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="풀 스타일 (Full Style)" />
+
+            <RadioButton
+                android:id="@+id/radioCustomFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="커스텀 폰트 (Custom Font)" />
+
+        </RadioGroup>
+
+        <!-- 광고 요청 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="스타일이 적용된 네이티브 광고 로드"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:layout_marginBottom="8dp"
+            app:backgroundTint="#2196F3" />
+
+        <!-- 광고 표시 버튼 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnShowAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="광고 표시"
+            android:textSize="16sp"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"
+            android:enabled="false"
+            app:backgroundTint="#4CAF50" />
+
+        <!-- 광고 표시 영역 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="광고 표시 영역"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <RelativeLayout
+            android:id="@+id/adViewRoot"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="#F5F5F5"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="광고가 여기에 표시됩니다"
+                android:textColor="#999999"
+                android:layout_centerInParent="true"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

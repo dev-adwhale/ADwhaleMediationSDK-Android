@@ -8,4 +8,5 @@
     <string name="banner250250_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="interstitial_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="reward_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
+    <string name="native_placement_uid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
 </resources>

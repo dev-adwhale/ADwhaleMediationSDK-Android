@@ -3,11 +3,15 @@ package kr.co.adwhale.sample
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kr.co.adwhale.sample.banner.ProgrammaticBannerMainActivity
 import kr.co.adwhale.sample.banner.XmlBannerMainActivity
 import kr.co.adwhale.sample.databinding.ActivitySampleMainBinding
 import kr.co.adwhale.sample.interstitial.ProgrammaticInterstitialMainActivity
+import kr.co.adwhale.sample.nativead.ProgrammaticCustomBindingNativeMainActivity
+import kr.co.adwhale.sample.nativead.ProgrammaticTemplateBindingNativeMainActivity
+import kr.co.adwhale.sample.nativead.StyledTemplateBindingNativeMainActivity
 import kr.co.adwhale.sample.reward.ProgrammaticRewardAdMainActivity
 
 class SampleMainActivity : AppCompatActivity() {
@@ -24,6 +28,9 @@ class SampleMainActivity : AppCompatActivity() {
         val btnXmlBanner = binding.btnXmlBanner
         val btnInterstitial = binding.btnInterstitial
         val btnRewardAd = binding.btnRewardAd
+        val btnNativeAdCustomBinding = binding.btnNativeCustomBinding
+        val btnNativeAdTemplateBinding = binding.btnNativeTemplateBinding
+        val btnNativeAdTemplateBindingWithStyle = binding.btnNativeTemplateBindingWithStyle
 
         etMediaUid.setText(getMetaData())
         btnProgrammaticBanner.setOnClickListener {
@@ -44,6 +51,21 @@ class SampleMainActivity : AppCompatActivity() {
         btnRewardAd.setOnClickListener {
             setMetaData(etMediaUid.text.toString())
             startActivity(Intent(this, ProgrammaticRewardAdMainActivity::class.java))
+        }
+
+        btnNativeAdCustomBinding.setOnClickListener {
+            setMetaData(etMediaUid.text.toString())
+            startActivity(Intent(this, ProgrammaticCustomBindingNativeMainActivity::class.java))
+        }
+
+        btnNativeAdTemplateBinding.setOnClickListener {
+            setMetaData(etMediaUid.text.toString())
+            startActivity(Intent(this, ProgrammaticTemplateBindingNativeMainActivity::class.java))
+        }
+
+        btnNativeAdTemplateBindingWithStyle.setOnClickListener {
+            setMetaData(etMediaUid.text.toString())
+            startActivity(Intent(this, StyledTemplateBindingNativeMainActivity::class.java))
         }
     }
 
