@@ -114,6 +114,7 @@
     public *** setRegion(***);
     public *** setGcoder(***, ***);
     public *** setPlacementName(***);
+    public *** setAdaptiveAnchorWidth(***);
     public *** resume();
     public *** pause();
 }
@@ -128,6 +129,7 @@
     public *** setPlacementName(***);
     public *** destroy();
     public *** setAdWhaleMediationAdBannerViewListener(***);
+    public *** setAdaptiveAnchorWidth(***);
     public *** resume();
     public *** pause();
 }
