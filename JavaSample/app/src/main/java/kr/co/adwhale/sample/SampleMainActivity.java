@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import kr.co.adwhale.sample.appopen.ProgrammaticAppOpenMainActivity;
 import kr.co.adwhale.sample.banner.ProgrammaticBannerMainActivity;
 import kr.co.adwhale.sample.banner.XmlBannerMainActivity;
 import kr.co.adwhale.sample.interstitial.ProgrammaticInterstitialMainActivity;
@@ -29,6 +30,7 @@ public class SampleMainActivity extends AppCompatActivity {
         Button btnXmlBanner = findViewById(R.id.btnXmlBanner);
         Button btnInterstitial = findViewById(R.id.btnInterstitial);
         Button btnRewardAd = findViewById(R.id.btnRewardAd);
+        Button btnAppOpenAd = findViewById(R.id.btnAppOpenAd);
         Button btnNativeAdCustomBinding = findViewById(R.id.btn_native_custom_binding);
         Button btnNativeAdTemplateBinding = findViewById(R.id.btn_native_template_binding);
         Button btnNativeAdTemplateBindingWithStyle = findViewById(R.id.btn_native_template_binding_with_style);
@@ -55,6 +57,12 @@ public class SampleMainActivity extends AppCompatActivity {
         btnRewardAd.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
             Intent intent = new Intent(this, ProgrammaticRewardAdMainActivity.class);
+            startActivity(intent);
+        });
+
+        btnAppOpenAd.setOnClickListener(view -> {
+            setMetaData(etMediaUid.getText().toString());
+            Intent intent = new Intent(this, ProgrammaticAppOpenMainActivity.class);
             startActivity(intent);
         });
 

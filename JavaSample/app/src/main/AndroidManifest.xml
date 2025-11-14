@@ -14,6 +14,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".appopen.ProgrammaticAppOpenMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".nativead.StyledTemplateBindingNativeMainActivity"
             android:exported="false" />
         <activity

@@ -69,12 +69,22 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
+        android:id="@+id/btnAppOpenAd"
+        android:text="App Open Ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRewardAd"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
         android:id="@+id/btn_native_custom_binding"
         android:text="Native Ad (for Custom Binding)"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        app:layout_constraintTop_toBottomOf="@id/btnRewardAd"
+        app:layout_constraintTop_toBottomOf="@id/btnAppOpenAd"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 

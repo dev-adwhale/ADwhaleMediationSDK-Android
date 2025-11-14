@@ -136,6 +136,20 @@
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAdBannerViewListener {*;}
 
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAppOpenAd {
+    public <init>(...);
+    public *** loadAd();
+    public *** showAd(***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
+    public *** setPlacementUid(***);
+    public *** setPlacementName(***);
+    public *** destroy();
+    public *** setAdWhaleMediationAppOpenAdListener(***);
+}
+
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAppOpenAdListener {*;}
+
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 끝 ==================
 
 #================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 시작 ==================
@@ -191,6 +205,7 @@
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.AdManagerAdRewardedInterstitialLoader {*;}
+-keep class net.adwhale.sdk.admob.adapter.AdManagerAdAppOpeningLoader {*;}
 
 #================== AdWhale AdManager Adapter SDK Proguard for Release 적용 코드 끝 ==================
 
@@ -209,6 +224,8 @@
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.AdmobAdRewardedInterstitialLoader {*;}
+
+-keep class net.adwhale.sdk.admob.adapter.AdmobAdAppOpeningLoader {*;}
 
 -keep class net.adwhale.sdk.admob.adapter.custom.cauly.AdMobCaulyEvent {*;}
 

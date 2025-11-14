@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ADWHALE-MEDIATION-ANDROID-SAMPLE</string>
     <string name="admob_app_id">Google AdMob 에서 발급한 키값</string>
-    <string name="publisher_uid">ADwhale Mediation SDK 가이드 내 키값 참조</string>    
+    <string name="publisher_uid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="banner32050_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="banner320100_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="banner300250_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
@@ -9,4 +9,5 @@
     <string name="interstitial_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="reward_placementUid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
     <string name="native_placement_uid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
+    <string name="app_open_placement_uid">ADwhale Mediation SDK 가이드 내 키값 참조</string>
 </resources>
