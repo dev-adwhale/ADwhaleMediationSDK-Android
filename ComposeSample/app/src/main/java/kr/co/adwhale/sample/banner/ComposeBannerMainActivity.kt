@@ -43,7 +43,7 @@ class ComposeBannerMainActivity : ComponentActivity() {
             }
         })
 
-        // placementUid 리소스 미리 가져오기 (Composable 안에서 getString 안 쓰려고)
+        // placementUid 리소스 미리 가져오기
         val banner320x50Uid = getString(R.string.banner32050_placementUid)
         val banner320x100Uid = getString(R.string.banner320100_placementUid)
         val banner300x250Uid = getString(R.string.banner300250_placementUid)
