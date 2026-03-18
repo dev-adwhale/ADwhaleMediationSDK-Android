@@ -76,27 +76,21 @@ public class ProgrammaticBannerMainActivity extends AppCompatActivity {
         });
 
         rgBannerAdSize.setOnCheckedChangeListener((radioGroup, checkedId) -> {
-            switch (checkedId) {
-                case R.id.rdBanner320x50:
-                    selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x50;
-                    etPlacementUid.setText(getString(R.string.banner32050_placementUid));
-                    break;
-                case R.id.rdBanner320x100:
-                    selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x100;
-                    etPlacementUid.setText(getString(R.string.banner320100_placementUid));
-                    break;
-                case R.id.rdBanner300x250:
-                    selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER300x250;
-                    etPlacementUid.setText(getString(R.string.banner300250_placementUid));
-                    break;
-                case R.id.rdBanner250x250:
-                    selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER250x250;
-                    etPlacementUid.setText(getString(R.string.banner250250_placementUid));
-                    break;
-                default:
-                    selectedAdWhaleAdSize = null;
-                    etPlacementUid.setText("");
-                    break;
+            if (checkedId == R.id.rdBanner320x50) {
+                selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x50;
+                etPlacementUid.setText(getString(R.string.banner32050_placementUid));
+            } else if (checkedId == R.id.rdBanner320x100) {
+                selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER320x100;
+                etPlacementUid.setText(getString(R.string.banner320100_placementUid));
+            } else if (checkedId == R.id.rdBanner300x250) {
+                selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER300x250;
+                etPlacementUid.setText(getString(R.string.banner300250_placementUid));
+            } else if (checkedId == R.id.rdBanner250x250) {
+                selectedAdWhaleAdSize = ADWHALE_AD_SIZE.BANNER250x250;
+                etPlacementUid.setText(getString(R.string.banner250250_placementUid));
+            } else {
+                selectedAdWhaleAdSize = null;
+                etPlacementUid.setText("");
             }
         });
         btnTest.setOnClickListener(view -> {

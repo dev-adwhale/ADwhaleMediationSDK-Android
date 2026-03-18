@@ -22,6 +22,14 @@
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 시작 ==================
 
 -keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationAds {
+    public static final int TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED;
+    public static final int TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE;
+    public static final int TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+    public static final java.lang.String MAX_AD_CONTENT_RATING_G;
+    public static final java.lang.String MAX_AD_CONTENT_RATING_PG;
+    public static final java.lang.String MAX_AD_CONTENT_RATING_T;
+    public static final java.lang.String MAX_AD_CONTENT_RATING_MA;
+
     public static *** init(***);
     public static *** init(***, ***);
     public static *** setCoppa(***);
@@ -32,8 +40,16 @@
     public static *** getGdprConsentStatus(***);
     public static *** resetGdprConsentStatus(***);
     public static *** getAdwhaleGDPR(***);
+    public static *** setAppVolume(***);
+    public static *** setAppMuted(***);
+    public static *** setTagForUnderAgeOfConsent(***);
+    public static *** setMaxAdContentRating(***);
+    public static *** setTestDeviceIdentifiers(***);
+    public static *** openAdInspector(***, ***);
 }
 
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleGdprConsentListener {*;}
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAdInspectorCloseListener {*;}
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener {*;}
 
 -keepclasseswithmembers class net.adwhale.sdk.utils.AdWhaleLog {
@@ -44,12 +60,14 @@
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE {*;}
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_RESULT_CODE {*;}
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_NATIVE_TEMPLATE {*;}
+-keep class net.adwhale.sdk.mediation.ads.ADWHALE_POPUP_AD_CLOSE_REASON {*;}
 -keep class net.adwhale.sdk.mediation.ads.GdprConsentStatus {*;}
 
 -keep class net.adwhale.sdk.utils.AdWhaleLog$LogLevel{*;}
 -keep class net.adwhale.sdk.impl.mediation.ReqMediationAdConfig {*;}
 -keep class net.adwhale.sdk.impl.mediation.ResMediationAdConfig {*;}
 -keep class net.adwhale.sdk.impl.mediation.ResMediation {*;}
+-keep class net.adwhale.sdk.impl.mediation.ResExtension {*;}
 
 -keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationInterstitialAd {
     public <init>(...);
@@ -150,6 +168,38 @@
 
 -keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationAppOpenAdListener {*;}
 
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationExitPopupAd {
+    public <init>(...);
+    public *** loadAd();
+    public *** showAd(***, ***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
+    public *** setPlacementUid(***);
+    public *** setPlacementName(***);
+    public *** setCustomizeButtonText(***, ***);
+    public *** setCustomDescription(***);
+    public *** destroy();
+    public *** resume(***);
+    public *** setAdWhaleMediationExitPopupAdListener(***);
+}
+
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationExitPopupAdListener {*;}
+
+-keepclasseswithmembers class net.adwhale.sdk.mediation.ads.AdWhaleMediationTransitionPopupAd {
+    public <init>(...);
+    public *** loadAd();
+    public *** showAd(***, ***);
+    public *** setRegion(***);
+    public *** setGcoder(***, ***);
+    public *** setPlacementUid(***);
+    public *** setPlacementName(***);
+    public *** destroy();
+    public *** resume(***);
+    public *** setAdWhaleMediationTransitionPopupAdListener(***);
+}
+
+-keep interface net.adwhale.sdk.mediation.ads.AdWhaleMediationTransitionPopupAdListener {*;}
+
 #================== AdWhale Mediation SDK Proguard for Release 적용 코드 끝 ==================
 
 #================== AdWhale Cauly Adapter SDK Proguard for Release 적용 코드 시작 ==================
@@ -187,6 +237,10 @@
 -keep class net.adwhale.sdk.adfit.adapter.AdFitAdBannerLoader {*;}
 
 -keep class net.adwhale.sdk.adfit.adapter.AdFitAdBannerPreLoader {*;}
+
+-keep class net.adwhale.sdk.adfit.adapter.AdFitExitPopupAdLoader {*;}
+
+-keep class net.adwhale.sdk.adfit.adapter.AdFitTransitionPopupAdLoader {*;}
 
 #================== AdWhale AdFit Adapter SDK Proguard for Release 적용 코드 끝 ==================
 

@@ -34,6 +34,9 @@
             android:name=".appopen.ComposeAppOpenMainActivity"
             android:exported="false" />
         <activity
+            android:name=".transition.TransitionTestMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".SampleMainActivity"
             android:exported="true"
             android:label="@string/app_name"

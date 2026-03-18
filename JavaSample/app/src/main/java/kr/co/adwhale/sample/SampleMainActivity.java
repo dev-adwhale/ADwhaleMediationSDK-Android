@@ -1,13 +1,24 @@
 package kr.co.adwhale.sample;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import net.adwhale.sdk.mediation.ads.ADWHALE_POPUP_AD_CLOSE_REASON;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationAds;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationExitPopupAd;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationExitPopupAdListener;
+import net.adwhale.sdk.mediation.ads.AdWhaleMediationOnInitCompleteListener;
+import net.adwhale.sdk.utils.AdWhaleLog;
 
 import kr.co.adwhale.sample.appopen.ProgrammaticAppOpenMainActivity;
 import kr.co.adwhale.sample.banner.ProgrammaticBannerMainActivity;
@@ -17,16 +28,34 @@ import kr.co.adwhale.sample.nativead.ProgrammaticCustomBindingNativeMainActivity
 import kr.co.adwhale.sample.nativead.ProgrammaticTemplateBindingNativeMainActivity;
 import kr.co.adwhale.sample.nativead.StyledTemplateBindingNativeMainActivity;
 import kr.co.adwhale.sample.reward.ProgrammaticRewardAdMainActivity;
+import kr.co.adwhale.sample.transition.TransitionTestMainActivity;
 
 public class SampleMainActivity extends AppCompatActivity {
+
+
+    private static final String LOG_TAG = SampleMainActivity.class.getSimpleName();
+
+    private AdWhaleMediationExitPopupAd adWhaleMediationExitPopupAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample_main);
 
+
+        AdWhaleLog.setLogLevel(AdWhaleLog.LogLevel.Error);
+
+        AdWhaleMediationAds.init(this, new AdWhaleMediationOnInitCompleteListener() {
+            @Override
+            public void onInitComplete(int statusCode, String message) {
+                Log.i(LOG_TAG, ".onInitComplete(" + statusCode + ", " + message + ")");
+                loadExitPopupAd();
+            }
+        });
+
         EditText etMediaUid = findViewById(R.id.etMediaUid);
         Button btnProgrammaticBanner = findViewById(R.id.btnProgrammaticBanner);
+        Button btnTransitionAd = findViewById(R.id.btn_move_to_transition_ad);
         Button btnXmlBanner = findViewById(R.id.btnXmlBanner);
         Button btnInterstitial = findViewById(R.id.btnInterstitial);
         Button btnRewardAd = findViewById(R.id.btnRewardAd);
@@ -39,6 +68,12 @@ public class SampleMainActivity extends AppCompatActivity {
         btnProgrammaticBanner.setOnClickListener(view -> {
             setMetaData(etMediaUid.getText().toString());
             Intent intent = new Intent(this, ProgrammaticBannerMainActivity.class);
+            startActivity(intent);
+        });
+
+        btnTransitionAd.setOnClickListener(view -> {
+            setMetaData(etMediaUid.getText().toString());
+            Intent intent = new Intent(this, TransitionTestMainActivity.class);
             startActivity(intent);
         });
 
@@ -110,5 +145,88 @@ public class SampleMainActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             return "";
         }
+    }
+
+    private void loadExitPopupAd() {
+        adWhaleMediationExitPopupAd = new AdWhaleMediationExitPopupAd(getResources().getString(R.string.exit_popup_placement_uid));
+//                adWhaleMediationExitPopupAd.disableOnExitPopupBackKey();
+        adWhaleMediationExitPopupAd.setCustomizeButtonText("테스트 취소", "테스트 종료");
+        adWhaleMediationExitPopupAd.setCustomDescription("테스트 문구");
+        adWhaleMediationExitPopupAd.setAdWhaleMediationExitPopupAdListener(new AdWhaleMediationExitPopupAdListener() {
+            @Override
+            public void onAdLoaded() {
+                Log.d(LOG_TAG, "onAdLoaded");
+            }
+
+            @Override
+            public void onAdLoadFailed(int statusCode, String message) {
+                Log.d(LOG_TAG, "onAdLoadFailed(" + statusCode + ", " + message + ");");
+            }
+
+            @Override
+            public void onAdShowed() {
+                Log.d(LOG_TAG, "onAdShowed");
+            }
+
+            @Override
+            public void onAdClicked() {
+                Log.d(LOG_TAG, "onAdClicked");
+            }
+
+            @Override
+            public void onAdShowFailed(int statusCode, String message) {
+                Log.d(LOG_TAG, "onAdShowFailed(" + statusCode + ", " + message + ");");
+            }
+
+            @Override
+            public void onAdClosed(ADWHALE_POPUP_AD_CLOSE_REASON adwhaleExitPopupAdCloseReason) {
+                Log.d(LOG_TAG, "onAdClosed(" + adwhaleExitPopupAdCloseReason.getCloseReasonTypeString() + ");");
+            }
+        });
+        adWhaleMediationExitPopupAd.loadAd();
+    }
+
+    @Override
+    protected void onResume() {
+        if (adWhaleMediationExitPopupAd != null)
+            adWhaleMediationExitPopupAd.resume(this); // 필수 호출
+        super.onResume();
+    }
+
+    // Back Key가 눌러졌을 때, CloseAd 호출
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            showExitPopupAd();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void showExitPopupAd() {
+        if(adWhaleMediationExitPopupAd != null) {
+            adWhaleMediationExitPopupAd.showAd(SampleMainActivity.this, SampleMainActivity.this.getSupportFragmentManager());
+        }
+    }
+
+    private void showDefaultClosePopup() {
+        new AlertDialog.Builder(this).setTitle("").setMessage("종료 하시겠습니까?")
+                .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("아니요", null)
+                .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.i(LOG_TAG, ".onDestroy()");
+        if(adWhaleMediationExitPopupAd != null) {
+            adWhaleMediationExitPopupAd.destroy();
+        }
+        super.onDestroy();
     }
 }

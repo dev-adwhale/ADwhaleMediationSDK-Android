@@ -14,6 +14,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".transition.TransitionTestMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".appopen.ProgrammaticAppOpenMainActivity"
             android:exported="false" />
         <activity

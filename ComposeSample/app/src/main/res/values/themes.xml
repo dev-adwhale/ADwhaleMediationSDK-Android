@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ComposeSample" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- SampleMainActivity는 AppCompatActivity를 사용하므로 AppCompat 기반 테마가 필요합니다. -->
+    <style name="Theme.ComposeSample" parent="Theme.AppCompat.Light.NoActionBar" />
 </resources>

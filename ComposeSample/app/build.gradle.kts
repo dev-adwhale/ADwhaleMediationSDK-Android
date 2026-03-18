@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.appcompat)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
@@ -65,22 +66,22 @@ dependencies {
 //    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // --- AdWhale Mediation sdk ---
-    implementation("net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.2")
+    implementation("net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.3")
 
     // cauly adapter sdk
-    implementation("net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.41.0")
+    implementation("net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.43.0")
 
     // admize adapter sdk
-    implementation("net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.0")
+    implementation("net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.1")
 
     // adfit adapter sdk
-    implementation("net.adwhale.sdk.adfit.adapter:adfit-sdk:3.17.2.5")
+    implementation("net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.0")
 
     // admob adapter sdk
-    implementation("net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.2")
+    implementation("net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.3")
 
     // levelplay adapter sdk
-    implementation("net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.7.0.6")
+    implementation("net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.11.0.0")
 
     // --- AdMob Ad Inspector용 ---
     implementation("com.google.android.gms:play-services-ads:24.3.0")

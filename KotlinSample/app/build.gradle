@@ -8,7 +8,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 
 android {
     namespace 'kr.co.adwhale.sample'
-    compileSdk 34
+    compileSdk 35
 
     signingConfigs{
         release{
@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId "kr.co.adwhale.sample"
         minSdk 24
-        targetSdk 34
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -56,27 +56,26 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // 기본 디펜던시: ADwhale Mediation SDK Repository
-    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.2'
+    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.3'
 
     // 옵션 디펜던시(제외가능): Cauly Adapter SDK Repository
-    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.41.0'
+    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.43.0'
 
     // 옵션 디펜던시(제외가능): Admize Adapter SDK Repository
-    implementation 'net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.0'
+    implementation 'net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.1'
 
     // 옵션 디펜던시(제외가능): AdFit Adapter SDK Repository
-    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.17.2.5'
+    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.0'
 
     // 옵션 디펜던시(제외가능): Admob Adapter SDK Repository
-    implementation 'net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.2'
+    implementation 'net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.3'
 
     // 옵션 디펜던시(제외가능): Levelplay Adapter SDK Repository
-    implementation 'net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.7.0.6'
+    implementation 'net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.11.0.0'
 
     // Lifecycle Process (ProcessLifecycleOwner 사용을 위해 필요)
     implementation 'androidx.lifecycle:lifecycle-process:2.6.2'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.6.2'
-    implementation 'androidx.activity:activity:1.11.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
