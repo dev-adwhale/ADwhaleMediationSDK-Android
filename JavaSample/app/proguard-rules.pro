@@ -55,6 +55,12 @@
 -keepclasseswithmembers class net.adwhale.sdk.utils.AdWhaleLog {
     public static *** setLogLevel(***);
     public static *** getLogLevel();
+    public static *** d(***);
+    public static *** i(***);
+    public static *** w(***);
+    public static *** e(java.lang.String);
+    public static *** e(java.lang.String, java.lang.Exception);
+    public static *** e(java.lang.String, java.lang.Throwable);
 }
 
 -keep class net.adwhale.sdk.mediation.ads.ADWHALE_AD_SIZE {*;}
