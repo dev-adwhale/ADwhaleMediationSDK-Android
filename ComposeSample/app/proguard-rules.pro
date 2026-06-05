@@ -97,6 +97,8 @@
     public *** setRegion(***);
     public *** setGcoder(***, ***);
     public *** setPlacementName(***);
+    public *** setUserId(***);
+    public *** setCustomData(***);       
     public *** destroy();
     public *** setAdWhaleMediationFullScreenContentCallback(***);
 }

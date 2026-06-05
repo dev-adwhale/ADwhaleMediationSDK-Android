@@ -66,25 +66,22 @@ dependencies {
 //    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // --- AdWhale Mediation sdk ---
-    implementation("net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.3")
+    implementation("net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.4")
 
     // cauly adapter sdk
-    implementation("net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.43.0")
+    implementation("net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.44.0")
 
     // admize adapter sdk
-    implementation("net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.1")
+    implementation("net.adwhale.sdk.admize.adapter:admize-sdk:1.0.8.2")
 
     // adfit adapter sdk
-    implementation("net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.0")
+    implementation("net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.1")
 
     // admob adapter sdk
-    implementation("net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.3")
+    implementation("net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.4")
 
     // levelplay adapter sdk
-    implementation("net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.11.0.0")
-
-    // --- AdMob Ad Inspector용 ---
-    implementation("com.google.android.gms:play-services-ads:24.3.0")
+    implementation("net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.12.0.1")
 
     // --- Lifecycle Process (ProcessLifecycleOwner 용) ---
     implementation("androidx.lifecycle:lifecycle-process:2.6.2")
