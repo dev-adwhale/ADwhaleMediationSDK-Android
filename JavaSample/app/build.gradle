@@ -55,7 +55,7 @@ dependencies {
     // 기본 디펜던시: ADwhale Mediation SDK Repository
     implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.8'
     
-    // 옵션 디펜던시(제외가능): Cauly Adapter SDK Repository
+    // 기본 디펜던시: Cauly Adapter SDK Repository
     implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.46.2'
     
     // 옵션 디펜던시(제외가능): Admize Adapter SDK Repository
