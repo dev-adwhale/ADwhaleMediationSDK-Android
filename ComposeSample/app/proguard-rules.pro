@@ -116,6 +116,7 @@
     public *** setDebugEnabled(***);
     public *** setAdWhaleMediationNativeAdViewListener(***);
     public *** setPlacementUid(***);
+    public *** setPlacementName(***);
     public *** setRegion(***);
     public *** setGcoder(***, ***);
     public *** resume();
