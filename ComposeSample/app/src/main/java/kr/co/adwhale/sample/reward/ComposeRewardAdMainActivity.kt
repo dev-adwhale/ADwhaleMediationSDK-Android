@@ -148,7 +148,7 @@ class ComposeRewardAdMainActivity : ComponentActivity() {
             return
         }
 
-        ad.showAd { rewardItem ->
+        ad.showAd(this) { rewardItem ->
             Log.i(TAG, ".onUserRewarded(${rewardItem})")
             Toast.makeText(
                 applicationContext,

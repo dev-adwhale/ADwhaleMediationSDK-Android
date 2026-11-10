@@ -75,7 +75,7 @@ public class ProgrammaticRewardAdMainActivity extends AppCompatActivity {
             }
         }));
 
-        btnShow.setOnClickListener(view -> adWhaleMediationRewardAd.showAd(adWhaleMediationRewardItem -> {
+        btnShow.setOnClickListener(view -> adWhaleMediationRewardAd.showAd(ProgrammaticRewardAdMainActivity.this, adWhaleMediationRewardItem -> {
             Log.i(ProgrammaticRewardAdMainActivity.class.getSimpleName(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")");
             Toast.makeText(getApplicationContext(), ".onUserRewarded(" + adWhaleMediationRewardItem.toString() + ")", Toast.LENGTH_SHORT).show();
         }));

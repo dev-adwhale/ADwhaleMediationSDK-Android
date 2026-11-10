@@ -104,7 +104,7 @@ class ProgrammaticRewardAdMainActivity : AppCompatActivity() {
         }
 
         btnShow.setOnClickListener {
-            adWhaleMediationRewardAd.showAd { adWhaleMediationRewardItem ->
+            adWhaleMediationRewardAd.showAd(this@ProgrammaticRewardAdMainActivity) { adWhaleMediationRewardItem ->
                 Log.i(
                     ProgrammaticRewardAdMainActivity::class.java.simpleName,
                     ".onUserRewarded($adWhaleMediationRewardItem)"

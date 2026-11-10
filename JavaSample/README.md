@@ -1,6 +1,6 @@
 # ADwhale Mediation SDK - Java 샘플
 
-ADwhale Mediation SDK **2.7.10** 연동 예시를 Java로 작성한 샘플 앱입니다.
+ADwhale Mediation SDK **2.7.11** 연동 예시를 Java로 작성한 샘플 앱입니다.
 
 ## 요구 사항
 
@@ -13,7 +13,7 @@ ADwhale Mediation SDK **2.7.10** 연동 예시를 Java로 작성한 샘플 앱�
 | Android Gradle Plugin | 8.1.0 |
 | Gradle | 8.0.2 |
 
-## 의존성 (2.7.10 기준)
+## 의존성 (2.7.11 기준)
 
 ### 저장소 (`build.gradle`, 프로젝트 수준)
 
@@ -38,21 +38,21 @@ allprojects {
 
 | 구분 | 라이브러리 | 버전 |
 |---|---|---|
-| 기본 | `net.adwhale.sdk.mediation:adwhale-mediation-sdk` | 2.7.10 |
-| 기본 | `net.adwhale.sdk.cauly.adapter:cauly-sdk` | 3.5.47.1 |
-| 옵션(제외 가능) | `net.adwhale.sdk.admize.adapter:admize-sdk` | 1.0.9.0 |
-| 옵션(제외 가능) | `net.adwhale.sdk.adfit.adapter:adfit-sdk` | 3.21.17.7 |
-| 옵션(제외 가능) | `net.adwhale.sdk.admob.adapter:admob-sdk` | 24.3.0.10 |
-| 옵션(제외 가능) | `net.adwhale.sdk.levelplay.adapter:levelplay-sdk` | 8.12.0.7 |
+| 기본 | `net.adwhale.sdk.mediation:adwhale-mediation-sdk` | 2.7.11 |
+| 기본 | `net.adwhale.sdk.cauly.adapter:cauly-sdk` | 3.5.47.2 |
+| 옵션(제외 가능) | `net.adwhale.sdk.admize.adapter:admize-sdk` | 1.0.10.0 |
+| 옵션(제외 가능) | `net.adwhale.sdk.adfit.adapter:adfit-sdk` | 3.21.17.8 |
+| 옵션(제외 가능) | `net.adwhale.sdk.admob.adapter:admob-sdk` | 25.4.0.0 |
+| 옵션(제외 가능) | `net.adwhale.sdk.levelplay.adapter:levelplay-sdk` | 8.12.0.8 |
 
 ```groovy
 dependencies {
-    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.10'
-    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.47.1'
-    implementation 'net.adwhale.sdk.admize.adapter:admize-sdk:1.0.9.0'
-    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.7'
-    implementation 'net.adwhale.sdk.admob.adapter:admob-sdk:24.3.0.10'
-    implementation 'net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.12.0.7'
+    implementation 'net.adwhale.sdk.mediation:adwhale-mediation-sdk:2.7.11'
+    implementation 'net.adwhale.sdk.cauly.adapter:cauly-sdk:3.5.47.2'
+    implementation 'net.adwhale.sdk.admize.adapter:admize-sdk:1.0.10.0'
+    implementation 'net.adwhale.sdk.adfit.adapter:adfit-sdk:3.21.17.8'
+    implementation 'net.adwhale.sdk.admob.adapter:admob-sdk:25.4.0.0'
+    implementation 'net.adwhale.sdk.levelplay.adapter:levelplay-sdk:8.12.0.8'
 
     // 앱 오프닝 광고에서 ProcessLifecycleOwner 사용 시 필요
     implementation 'androidx.lifecycle:lifecycle-process:2.6.2'
@@ -109,13 +109,27 @@ dependencies {
   - 어댑터 블록(Cauly, Admize, AdFit, Admob, LevelPlay)은 사용하는 어댑터에 해당하는 것만 복사합니다.
   - `AdManager Adapter SDK` 블록은 Admob 어댑터(`admob-sdk`)에 포함된 클래스용이므로, Admob 어댑터를 쓰면 `Admob Adapter SDK` 블록과 함께 복사합니다.
   - LevelPlay 미디에이션의 하위 네트워크(AppLovin, InMobi, Liftoff, Mintegral, Pangle, Unity 등)를 쓰는 경우 네트워크별 ProGuard 규칙이 추가로 필요합니다. 이 샘플에는 포함되어 있지 않으므로 ADwhale Mediation SDK 가이드에서 해당 네트워크를 선택해 생성된 블록을 사용합니다.
-- `shrinkResources true`를 쓰면서 Admob 또는 LevelPlay 미디에이션으로 **Pangle·Mintegral**을 함께 쓰는 경우, 네트워크 SDK 리소스가 제거되지 않도록 `app/src/main/res/raw/keep.xml`을 추가합니다. (이 샘플에는 Pangle·Mintegral이 포함되어 있지 않습니다.)
+  - Admob 미디에이션으로 **Pangle**을 쓰는 경우 아래 규칙을 추가합니다. Android Gradle Plugin 9.5 이상에서는 없으면 R8 빌드가 실패하고, 그 미만에서는 넣어도 문제없습니다.
+
+    ```proguard
+    -dontwarn com.android.billingclient.api.**
+    -dontwarn com.android.installreferrer.api.**
+    -dontwarn com.bytedance.sdk.openadsdk.core.model.NetExtParams$RenderType
+    -dontwarn com.bytedance.sdk.openadsdk.core.settings.TTSdkSettings$FETCH_REQUEST_SOURCE
+    ```
+- `shrinkResources true`를 쓰면 광고 SDK가 이름으로 찾는 리소스가 제거될 수 있으므로, `app/src/main/res/raw/keep.xml`에 아래 표에서 해당하는 항목을 넣습니다. (샘플은 리소스 축소를 쓰지 않습니다.)
+
+  | 사용 조건 | `tools:keep` 항목 |
+  |---|---|
+  | Cauly 앱 종료 광고 | `@drawable/btn_left_*,@drawable/btn_right_*` |
+  | Admob/LevelPlay 미디에이션의 Pangle | `@drawable/tt_*,@string/tt_*,@layout/tt_*,@anim/tt_*,@color/tt_*,@style/tt_*,@id/tt_*,@dimen/tt_*` |
+  | Admob/LevelPlay 미디에이션의 Mintegral | `@layout/mbridge_*,@drawable/mbridge_*,@anim/mbridge_*,@color/mbridge_*,@string/mbridge_*,@dimen/mbridge_*,@style/mbridge_*,@id/mbridge_*` |
+
+  예) Cauly 앱 종료 광고를 쓰는 경우:
 
   ```xml
-  <!-- 이미 keep.xml 이 있다면 tools:keep 값에 아래 항목을 쉼표(,)로 이어 추가합니다.
+  <!-- 이미 keep.xml 이 있다면 tools:keep 값에 항목을 쉼표(,)로 이어 추가합니다.
        추가·변경 후에는 반드시 clean 빌드하세요. -->
   <resources xmlns:tools="http://schemas.android.com/tools"
-      tools:keep="@drawable/tt_*,@string/tt_*,@layout/tt_*,@anim/tt_*,@color/tt_*,@style/tt_*,@id/tt_*,@dimen/tt_*,@layout/mbridge_*,@drawable/mbridge_*,@anim/mbridge_*,@color/mbridge_*,@string/mbridge_*,@dimen/mbridge_*,@style/mbridge_*,@id/mbridge_*" />
+      tools:keep="@drawable/btn_left_*,@drawable/btn_right_*" />
   ```
-
-  Pangle만 쓰면 `tt_*` 항목만, Mintegral만 쓰면 `mbridge_*` 항목만 넣습니다.
